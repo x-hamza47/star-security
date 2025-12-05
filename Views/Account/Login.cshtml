@@ -1,0 +1,50 @@
+﻿@model Star_Security.ViewModels.LoginVM;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+@if (TempData["LoginError"] != null)
+{
+    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+        @TempData["LoginError"]
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+}
+
+<div class="wrapper">
+    <form asp-action="Login" method="post">
+        <h1>Login</h1>
+        <!-- Username Field -->
+        <div class="inp-bx user-field">
+            <input type="text" placeholder="Username" asp-for="Username"> <i class='bx bx-user'></i>
+            @* <span class="username-error error">
+                <span class="material-symbols-rounded">
+                    error
+                </span>
+                <p class="error-text" asp-validation-for="Username"></p>
+            </span> *@
+            <span asp-validation-for="Username" class="text-danger text-xs text-start ms-2"></span>
+        </div>
+
+        <!-- Password Field -->
+        <div class="inp-bx pass-field">
+            <input type="password" placeholder="Password" asp-for="Password">
+            <i class='bx bx-lock-alt'></i>
+            @* <span class="pass-error error">
+                <span class="material-symbols-rounded">
+                    error
+                </span>
+                <p class="error-text" asp-validation-for="Password">Incorrect password</p>
+            </span> *@
+            <span asp-validation-for="Password" class="text-danger text-xs text-start ms-2"></span>
+        </div>
+
+        <div class="remember-forgot">
+            @* <label><input type="checkbox" name="" id=""> Remember me</label> *@
+            <a href="#">Forgot password?</a>
+        </div>
+
+        <button type="submit" class="btn login-btn">Login</button>
+
+    </form>
+</div>

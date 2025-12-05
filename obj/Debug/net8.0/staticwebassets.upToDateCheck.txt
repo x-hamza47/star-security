@@ -62,3 +62,4 @@ wwwroot\dashboard\css\style.css
 wwwroot\dashboard\js\script.js
 wwwroot\dashboard\js\dashboard.js
 wwwroot\dashboard\css\dashboard.css
+wwwroot\dashboard\css\login.css
