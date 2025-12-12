@@ -16,35 +16,36 @@
         <h1>Login</h1>
         <!-- Username Field -->
         <div class="inp-bx user-field">
-            <input type="text" placeholder="Username" asp-for="Username"> <i class='bx bx-user'></i>
-            @* <span class="username-error error">
-                <span class="material-symbols-rounded">
-                    error
+            <input type="text" placeholder="Username" name="Username" />
+            <span class="material-symbols-rounded"> person </span>
+            @if (ViewData.ModelState["Username"]?.Errors.Count > 0)
+            {
+                <span class="username-error error">
+                    <span class="material-symbols-rounded error-icon"> error </span>
+                    <p class="error-text mb-0">@ViewData.ModelState["Username"].Errors[0].ErrorMessage</p>
                 </span>
-                <p class="error-text" asp-validation-for="Username"></p>
-            </span> *@
-            <span asp-validation-for="Username" class="text-danger text-xs text-start ms-2"></span>
+            }
         </div>
 
         <!-- Password Field -->
-        <div class="inp-bx pass-field">
-            <input type="password" placeholder="Password" asp-for="Password">
-            <i class='bx bx-lock-alt'></i>
-            @* <span class="pass-error error">
-                <span class="material-symbols-rounded">
-                    error
+        <div class="inp-bx pass-field ">
+            <input type="password" placeholder="Password" name="Password" />
+            <span class="material-symbols-rounded show-hide"> visibility </span>
+
+            @if (ViewData.ModelState["Password"]?.Errors.Count > 0)
+            {
+                <span class="pass-error error">
+                    <span class="material-symbols-rounded error-icon"> error </span>
+                    <p class="error-text mb-0">@ViewData.ModelState["Password"].Errors[0].ErrorMessage</p>
                 </span>
-                <p class="error-text" asp-validation-for="Password">Incorrect password</p>
-            </span> *@
-            <span asp-validation-for="Password" class="text-danger text-xs text-start ms-2"></span>
+            }
         </div>
 
         <div class="remember-forgot">
-            @* <label><input type="checkbox" name="" id=""> Remember me</label> *@
-            <a href="#">Forgot password?</a>
+            <label><input type="checkbox" name="" id="" /> Remember me</label>
+            <a href="./forgot.html">Forgot password?</a>
         </div>
 
         <button type="submit" class="btn login-btn">Login</button>
-
     </form>
 </div>
