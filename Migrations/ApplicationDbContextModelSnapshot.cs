@@ -177,17 +177,19 @@ namespace Star_Security.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContactNumber")
+                    b.Property<string>("Contact")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime?>("CreatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<int?>("DepartmentId")
                         .HasColumnType("int");
 
-                    b.Property<string>("EducationalQualification")
+                    b.Property<string>("Education")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -202,14 +204,7 @@ namespace Star_Security.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("FullName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<int?>("GradeId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("JobRoleId")
                         .HasColumnType("int");
 
                     b.Property<bool>("LockoutEnabled")
@@ -217,6 +212,10 @@ namespace Star_Security.Migrations
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -244,8 +243,10 @@ namespace Star_Security.Migrations
                     b.Property<bool>("TwoFactorEnabled")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime?>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                    b.Property<DateTime>("UpdatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("datetime2")
+                        .HasDefaultValueSql("GETDATE()");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
@@ -258,8 +259,6 @@ namespace Star_Security.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.HasIndex("GradeId");
-
-                    b.HasIndex("JobRoleId");
 
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
@@ -284,11 +283,11 @@ namespace Star_Security.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ClientName")
+                    b.Property<string>("Contact")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ContactPerson")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -305,9 +304,29 @@ namespace Star_Security.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<string>("Code")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
@@ -322,30 +341,33 @@ namespace Star_Security.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(250)
+                        .HasColumnType("nvarchar(250)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("LevelCode")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
 
                     b.HasKey("Id");
 
                     b.ToTable("Grades");
-                });
-
-            modelBuilder.Entity("Star_Security.Models.JobRole", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("JobRoles");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -403,27 +425,24 @@ namespace Star_Security.Migrations
                 {
                     b.HasOne("Star_Security.Models.Client", "Client")
                         .WithMany("Users")
-                        .HasForeignKey("ClientId");
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.SetNull);
 
                     b.HasOne("Star_Security.Models.Department", "Department")
                         .WithMany("Users")
-                        .HasForeignKey("DepartmentId");
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.HasOne("Star_Security.Models.Grade", "Grade")
                         .WithMany("Users")
-                        .HasForeignKey("GradeId");
-
-                    b.HasOne("Star_Security.Models.JobRole", "JobRole")
-                        .WithMany("Users")
-                        .HasForeignKey("JobRoleId");
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Restrict);
 
                     b.Navigation("Client");
 
                     b.Navigation("Department");
 
                     b.Navigation("Grade");
-
-                    b.Navigation("JobRole");
                 });
 
             modelBuilder.Entity("Star_Security.Models.Client", b =>
@@ -437,11 +456,6 @@ namespace Star_Security.Migrations
                 });
 
             modelBuilder.Entity("Star_Security.Models.Grade", b =>
-                {
-                    b.Navigation("Users");
-                });
-
-            modelBuilder.Entity("Star_Security.Models.JobRole", b =>
                 {
                     b.Navigation("Users");
                 });

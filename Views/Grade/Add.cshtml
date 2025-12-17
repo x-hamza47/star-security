@@ -1,0 +1,74 @@
+﻿@model Grade
+
+<div class="wrapper">
+    <form asp-action="Add" method="post"
+          class="d-flex flex-column gap-3"
+          asp-antiforgery="true">
+
+        <div>
+            <h1>Add Grade</h1>
+            <p class="text-center text-secondary">
+                Fill in the details of the staff grade.
+            </p>
+        </div>
+
+        <div class="inp-fields">
+       
+            <div class="inp-bx">
+                <label for="name">Grade Name</label>
+                <div class="input-wrap">
+                    <input id="name"
+                           type="text"
+                           asp-for="Name"
+                           placeholder="Grade I / Supervisor / Officer" />
+                    <span class="material-symbols-rounded">military_tech</span>
+                    <span asp-validation-for="Name"
+                          class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+      
+            <div class="inp-bx">
+                <label for="code">Grade Code</label>
+                <div class="input-wrap">
+                    <input id="code"
+                           type="text"
+                           asp-for="LevelCode"
+                           placeholder="G1 / G2 / SUP" />
+                    <span class="material-symbols-rounded">badge</span>
+                    <span asp-validation-for="LevelCode"
+                          class="text-danger validation-span"></span>
+                </div>
+            </div>
+        </div>
+
+   
+        <div class="inp-bx full-width mt-3">
+            <label for="description">Description</label>
+            <div class="input-wrap">
+                <textarea id="description"
+                          asp-for="Description"
+                          placeholder="Brief description of the grade responsibilities"></textarea>
+                <span class="material-symbols-rounded">assignment</span>
+                <span asp-validation-for="Description"
+                      class="text-danger validation-span"></span>
+            </div>
+        </div>
+
+        <div class="form-check form-switch mt-4">
+            <input class="form-check-input py-2 px-3 mt-0 me-1"
+                   type="checkbox"
+                   id="isActive"
+                   asp-for="IsActive"
+                   checked>
+            <label class="form-check-label user-select-none"
+                   for="isActive">
+                Active
+            </label>
+        </div>
+
+        <button type="submit" class="btn add-btn">
+            Create Grade
+        </button>
+    </form>
+</div>

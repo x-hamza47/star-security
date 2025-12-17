@@ -5,17 +5,15 @@ namespace Star_Security.Models
 {
     public class AppUser : IdentityUser
     {
-        public string FullName { get; set; }
         public string EmpCode { get; set; }
+        public string Name { get; set; }
         public string Address { get; set; }
 
-        public string ContactNumber { get; set; }
-        public string EducationalQualification { get; set; }
+        public string Contact { get; set; }
+        public string Education { get; set; }
 
         public int? DepartmentId { get; set; }
         public Department? Department { get; set; }
-        public int? JobRoleId { get; set; }
-        public JobRole? JobRole { get; set; }
         public int? GradeId { get; set; }
         public Grade? Grade { get; set; }
         public int? ClientId { get; set; }     
@@ -23,8 +21,8 @@ namespace Star_Security.Models
         public string? Achievements { get; set; }
         public string? ProfileImage { get; set; }
 
-        public DateTime? CreatedAt { get; set; }
-        public DateTime? UpdatedAt { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
 
     }
 }

@@ -1,0 +1,119 @@
+
+.main-wrapper .table-custom {
+    background: rgba(113, 43, 241, 0.24);
+    backdrop-filter: blur(8px);
+    border-radius: 12px;
+    overflow: hidden;
+    thead
+
+{
+    background: rgb(104, 38, 228);
+}
+
+}
+
+.btn-purple {
+    background: linear-gradient(190deg, #274cf3, #060f8b);
+    border: none;
+    span
+
+{
+    color: var(--color-text-muted);
+}
+
+&:hover {
+    background: linear-gradient(190deg, #5271fd, #060f8b);
+    span
+
+{
+    color: var(--color-text-light);
+}
+
+}
+
+&:active {
+    background: linear-gradient(190deg, #163ce4, #060f8b);
+}
+
+}
+
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-red {
+    background: linear-gradient(190deg, #fa665c, #af1a1a);
+    border: none;
+    &:hover
+
+{
+    background: linear-gradient(190deg, #fc8d85, #af1a1a);
+}
+
+&:active {
+    background: linear-gradient(190deg, #ff4e41, #790d0d);
+}
+
+}
+/* .main-wrapper .table .dt-paginate .page-link {
+	border-radius: 6px;
+	margin: 0 3px;
+} */
+
+.dt-length select {
+    border: none;
+    background-color: rgba(113, 43, 241, 0.24);
+    color: var(--color-text-light);
+    & option
+
+{
+    background: #1e1e1e;
+}
+
+&:focus {
+    outline: none;
+    box-shadow: none;
+}
+
+}
+
+.main-wrapper .dt-search input {
+    outline: none !important;
+    border: none !important;
+    background: rgba(53, 30, 105, 0.63) !important;
+    padding: 10px 10px !important;
+    border-radius: 60px;
+    box-shadow: none;
+    &::placeholder
+
+{
+    color: #ccc;
+}
+
+}
+
+.dt-paging .dt-paging-button {
+    padding: 0 0 !important;
+    margin: 0 0 !important;
+    border-radius: 6px;
+    button
+
+{
+    box-shadow: none;
+    background: var(--color-bg-hover);
+    border: none;
+    color: var(--color-text-light);
+    &:hover
+
+{
+    background: rgba(53, 30, 105, 0.63);
+}
+
+}
+}
+
+.dt-paging .dt-paging-button.active button {
+    background: linear-gradient(190deg, #a270fd, #2a05af);
+}

@@ -1,0 +1,59 @@
+﻿
+@section AlertsSection {
+    @await Html.PartialAsync("_Alert")
+}
+<table id="employeesTable" class="table-custom hover cell-border table-striped text-center">
+    <thead>
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Code</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @* @foreach (var department in Model) *@
+        {
+            <tr>
+                @* <td>@department.Id</td>
+                <td>@department.Name</td>
+                <td>@department.Code</td>
+                <td>
+                    @if (department.IsActive)
+                    {
+                        <span class="badge text-bg-success w-50 py-2">Active</span>
+                    }
+                    else
+                    {
+                        <span class="badge text-bg-secondary w-50 py-2">Inactive</span>
+                    } *@
+                </td>
+                <td>
+                    <div class="d-flex align-items-center justify-content-center gap-2">
+                        <button class="btn btn-purple btn-sm edit-dept-btn">
+                            <span class="material-symbols-rounded">edit</span>
+                        </button>
+                        <a class="btn btn-red btn-sm text-white delete-dept-btn">
+                            <span class="material-symbols-rounded">
+                                delete
+                            </span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.bootstrap5.min.js"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/dashboard/css/tables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.bootstrap5.min.css" />
+}

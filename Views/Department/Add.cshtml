@@ -1,0 +1,54 @@
+﻿@model Department;
+
+<div class="wrapper">
+    <form asp-action="Add" method="post" class="d-flex flex-column gap-3" asp-antiforgery="true">
+        <div>
+            <h1>Add Department</h1>
+            <p class="text-center text-secondary">
+                Fill in the details of the department.
+            </p>
+        </div>
+        <div class="inp-fields">
+            <div class="inp-bx">
+                <label for="name">Department Name</label>
+                <div class="input-wrap">
+                    <input id="name"
+                           type="text"
+                           asp-for="Name"
+                           placeholder="Department Name" />
+                    <span class="material-symbols-rounded">apartment</span>
+                    <span asp-validation-for="Name" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <div class="inp-bx">
+                <label for="code">Department Code</label>
+                <div class="input-wrap">
+                    <input id="code"
+                           type="text"
+                           asp-for="Code"
+                           placeholder="HR / IT / FIN" />
+                    <span class="material-symbols-rounded">badge</span>
+                    <span asp-validation-for="Code" class="text-danger validation-span"></span>
+                </div>
+            </div>
+        </div>
+
+        <div class="inp-bx full-width mt-3">
+            <label for="description">Description</label>
+            <div class="input-wrap">
+                <textarea id="description"
+                          asp-for="Description"
+                          placeholder="Brief description of the department"></textarea>
+                <span class="material-symbols-rounded">description</span>
+                <span asp-validation-for="Description" class="text-danger validation-span"></span>
+            </div>
+        </div>
+        <div class="form-check form-switch mt-4">
+            <input class="form-check-input py-2 px-3 mt-0 me-1" type="checkbox" id="isActive" checked asp-for="IsActive">
+            <label class="form-check-label user-select-none" for="isActive">Active</label>
+        </div>
+
+        <button type="submit" class="btn add-btn">Create Department</button>
+    </form>
+</div>
