@@ -1,0 +1,45 @@
+﻿@if (TempData["Success"] != null)
+{
+    <script>
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'success',
+            title: '@TempData["Success"]',
+            color: '#fff',           
+            showConfirmButton: false,
+            showCloseButton: true,
+            timer: 5000,
+            timerProgressBar: true,
+            iconColor: '#008000',
+            background: 'rgba(255, 255, 255, 0.2)',
+            backdrop: 'blur(20px)', 
+            customClass: {
+                popup: 'glass-toast'
+            }
+        });
+    </script>
+}
+
+@if (TempData["Error"] != null)
+{
+    <script>
+        Swal.fire({
+            toast: true,
+            position: 'top-end',
+            icon: 'error',
+            title: '@TempData["Error"]',
+            color: '#fff',
+            showConfirmButton: false,
+            timer: 5000,
+            showCloseButton: true,
+            timerProgressBar: true,
+            iconColor: '#ff6b6b', 
+            background: 'rgba(255, 255, 255, 0.2)',
+            backdrop: 'blur(20px)',
+            customClass: {
+                popup: 'glass-toast'
+            }
+        });
+    </script>
+}

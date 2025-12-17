@@ -29,12 +29,12 @@ namespace Star_Security.Services
                 {
                     UserName = Email,
                     Email = Email,
-                    FullName = "Hamza Aamir",
+                    Name = "Hamza Aamir",
                     EmpCode = "ADM001",
                     EmailConfirmed = true,
                     Address = "Head Office",
-                    ContactNumber = "0000000000",
-                    EducationalQualification = "N/A",
+                    Contact = "0000000000",
+                    Education = "N/A",
                     CreatedAt = DateTime.UtcNow
                 };
 

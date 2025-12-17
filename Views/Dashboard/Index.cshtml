@@ -1,18 +1,18 @@
 ﻿<section class="dashboard">
     <div class="top-cards">
-        <div class="card" id="card-1">
-            <h3 class="value">2/40</h3>
+        <div class="top-card" id="card-1">
+            <h3 class="value text-white">2/40</h3>
             <p class="label">Ticket Solds</p>
         </div>
-        <div class="card" id="card-2">
+        <div class="top-card" id="card-2">
             <h3 class="value">$2,500</h3>
             <p class="label">Net Sales</p>
         </div>
-        <div class="card" id="card-3">
+        <div class="top-card" id="card-3">
             <h3 class="value">0/40</h3>
             <p class="label">Add-ons sold</p>
         </div>
-        <div class="card" id="card-4">
+        <div class="top-card" id="card-4">
             <h3 class="value">$200K</h3>
             <p class="label">Page Views</p>
         </div>
@@ -38,3 +38,10 @@
         </div>
     </div>
 </section>
+
+@section Scripts {
+    <script src="~/dashboard/js/dashboard.js"></script>
+}
+@section Styles {
+    <link rel="stylesheet" href="~/dashboard/css/dashboard.css" />
+}
