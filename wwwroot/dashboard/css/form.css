@@ -87,6 +87,7 @@
     /* height: 50px; */
     display: flex;
     flex-direction: column;
+
     & > span:first-of-type
 
 {
@@ -140,7 +141,7 @@ input, textarea {
         width: 100%;
     }
 
-    .input-wrap > span:first-of-type {
+    .input-wrap > .material-symbols-rounded {
         position: absolute;
         top: 50%;
         right: 15px;
@@ -150,6 +151,7 @@ input, textarea {
     }
 
 .inp-bx select {
+    width:100%;
     height: 100%;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -159,10 +161,25 @@ input, textarea {
     outline: none;
 }
 
-    .inp-bx select option {
-        background: #1e1e1e;
-        color: #fff;
-    }
+input[readonly] {
+    border: 2px solid #555; 
+    color: #555; 
+    cursor: not-allowed; 
+
+    &:focus{
+               border-color:#555;
+           }
+
+}
+
+.inp-bx select option:not(:first-child) {
+    background: #2c033f;
+    color: #fff;
+}
+.inp-bx select option:first-child {
+    background: #1b1b1b;
+    color: #fff;
+}
 
 input:-webkit-autofill,
 input:-webkit-autofill:hover,
@@ -187,7 +204,9 @@ input:-webkit-autofill:focus {
     left: 0;
     font-size: 12px;
 }
-
+.validation-summary-errors ul{
+    margin-bottom:0 !important;
+}
 .glass-toast {
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);

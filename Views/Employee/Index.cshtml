@@ -5,33 +5,35 @@
 <table id="employeesTable" class="table-custom hover cell-border table-striped text-center">
     <thead>
         <tr>
-            <th class="text-center">ID</th>
-            <th class="text-center">Name</th>
-            <th class="text-center">Code</th>
-            <th class="text-center">Status</th>
-            <th class="text-center">Action</th>
+            <th>Emp Code</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Department</th>
+            <th>Grade</th>
+            <th>Client</th>
+            <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @* @foreach (var department in Model) *@
+        @foreach (var employee in Model)
         {
             <tr>
-                @* <td>@department.Id</td>
-                <td>@department.Name</td>
-                <td>@department.Code</td>
-                <td>
-                    @if (department.IsActive)
-                    {
-                        <span class="badge text-bg-success w-50 py-2">Active</span>
-                    }
-                    else
-                    {
-                        <span class="badge text-bg-secondary w-50 py-2">Inactive</span>
-                    } *@
-                </td>
+                <td>@employee.EmpCode</td>
+                <td>@employee.Name</td>
+                <td>@employee.Email</td>
+                <td>@employee.Department</td>
+                <td>@employee.Grade</td>
+                <td>@employee.Client</td>
                 <td>
                     <div class="d-flex align-items-center justify-content-center gap-2">
-                        <button class="btn btn-purple btn-sm edit-dept-btn">
+                        <button class="btn btn-purple btn-sm edit-dept-btn"
+                                data-id="@employee.Id"
+                                data-code="@employee.EmpCode"
+                                data-name="@employee.Name"
+                                data-email="@employee.Email"
+                                data-department="@employee.Department"
+                                data-grade="@employee.Grade"
+                                data-client="@employee.Client">
                             <span class="material-symbols-rounded">edit</span>
                         </button>
                         <a class="btn btn-red btn-sm text-white delete-dept-btn">
@@ -50,6 +52,7 @@
 @section Scripts {
     <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.3.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="~/dashboard/js/employees.js"></script>
 }
 
 @section Styles {
