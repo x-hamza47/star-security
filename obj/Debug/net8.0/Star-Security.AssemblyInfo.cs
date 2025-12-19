@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Star-Security")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bc4270f7f72eb23c66f84292e568025642e68bf2")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b15c626158c9311d707011d87e2f422bdfb84842")]
 [assembly: System.Reflection.AssemblyProductAttribute("Star-Security")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Star-Security")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

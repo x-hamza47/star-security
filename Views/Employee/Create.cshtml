@@ -1,1 +1,122 @@
-﻿
+﻿@model Star_Security.ViewModels.CreateEmployeeVM;
+
+
+<div class="wrapper">
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @Html.ValidationSummary(false)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    <form asp-action="Create" method="post" class="d-flex flex-column gap-3">
+        <div>
+            <h1>Add Employee</h1>
+            <p class="text-center text-secondary">
+                Login credentials will be generated automatically and sent to the
+                employee via email.
+            </p>
+        </div>
+        <div class="inp-fields">
+            <!-- Code -->
+            <div class="inp-bx">
+                <label asp-for="EmpCode">Employee Code</label>
+                <div class="input-wrap">
+                    <input id="EmpCode"
+                           type="text"
+                           asp-for="EmpCode"
+                           placeholder="EmpCode" readonly/>
+                    <span class="material-symbols-rounded" style="color:#555;">account_circle</span>
+                </div>
+            </div>
+            <!-- Full Name -->
+            <div class="inp-bx">
+                <label for="name">Full Name</label>
+                <div class="input-wrap">
+                    <input id="name"
+                           type="text"
+                           asp-for="Name"
+                           placeholder="Employee name" />
+                    <span class="material-symbols-rounded">person</span>
+                    <span asp-validation-for="Name" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="inp-bx">
+                <label for="email">Email</label>
+                <div class="input-wrap">
+                    <input id="email"
+                           type="email"
+                           asp-for="Email"
+                           placeholder="john@gmail.com" />
+                    <span class="material-symbols-rounded">mail</span>
+                    <span asp-validation-for="Email" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Contact Number -->
+            <div class="inp-bx">
+                <label for="contact">Contact Number</label>
+                <div class="input-wrap">
+                    <input id="contact"
+                           type="tel"
+                           asp-for="Contact"
+                           placeholder="+92 300 1234567" />
+                    <span class="material-symbols-rounded">phone</span>
+                    <span asp-validation-for="Contact" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="inp-bx full-width">
+                <label for="address">Address</label>
+                <div class="input-wrap">
+                    <input id="address"
+                           type="text"
+                           asp-for="Address"
+                           placeholder="Employee address" />
+                    <span class="material-symbols-rounded">home</span>
+                    <span asp-validation-for="Address" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Qualification -->
+            <div class="inp-bx">
+                <label for="qualification">Educational Qualification</label>
+                <div class="input-wrap">
+                    <input id="qualification"
+                           type="text"
+                           asp-for="Education"
+                           placeholder="BS Computer Science" />
+                    <span class="material-symbols-rounded">school</span>
+                    <span asp-validation-for="Education" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Department -->
+            <div class="inp-bx">
+                <label for="department">Department</label>
+                <div class="input-wrap">
+                    <select id="department" asp-for="DepartmentId" asp-items="Model.Departments">
+                        <option value="" >-- Select Department --</option>
+                    </select>
+                    <span asp-validation-for="DepartmentId" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Grade -->
+            <div class="inp-bx">
+                <label for="grade">Grade</label>
+                <div class="input-wrap">
+                    <select id="grade" asp-for="GradeId" asp-items="Model.Grades">
+                        <option value="" >-- Select Grade --</option>
+                    </select>
+                    <span asp-validation-for="GradeId" class="text-danger validation-span"></span>
+                </div>
+            </div>
+        </div>
+
+        <button type="submit" class="btn add-btn mt-2">Register Employee</button>
+    </form>
+</div>

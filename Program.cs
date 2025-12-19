@@ -2,7 +2,9 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Star_Security.Data;
 using Star_Security.Models;
+using Star_Security.Models.Config;
 using Star_Security.Services;
+using Star_Security.Services.Email;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -18,11 +20,17 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
         options.Password.RequiredLength = 6;
         options.User.RequireUniqueEmail = true;
         options.SignIn.RequireConfirmedEmail = false;
+        options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_. ";
     }
 )
 .AddEntityFrameworkStores<ApplicationDbContext>()
 .AddDefaultTokenProviders();
 
+builder.Services.Configure<EmailSettings>(
+    builder.Configuration.GetSection("EmailSettings")
+    );
+
+builder.Services.AddScoped<IEmailSender, EmailSender>();
 var app = builder.Build();
 
 using (var scope = app.Services.CreateScope())
@@ -48,6 +56,6 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Grade}/{action=Index}/{id?}");
+    pattern: "{controller=Employee}/{action=Create}/{id?}");
 
 app.Run();
