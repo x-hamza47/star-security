@@ -17,6 +17,59 @@
 
 }
 
+.profile-content{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+    .profile-content .user-details span p {
+        color: var(--color-text-muted);
+        display: flex;
+        align-items: flex-end;
+        gap: 4px;
+
+    }
+
+.profile-wrapper {
+    position: relative;
+    width: 120px;
+    height: 120px;
+    border: 2px solid #ccc;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.edit-icon {
+    position: absolute;
+    bottom: 2px;
+    right: 5px;
+    background: #000316;
+    border-radius: 50%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+    .edit-icon span {
+        font-size: 18px;
+        color: #fff;
+    }
+
+#fileInput {
+    display: none;
+}
+
+
+
 .btn-update {
     background: linear-gradient(190deg, #a270fd, #2a05af);
     color: #fff;
@@ -159,6 +212,7 @@ input, textarea {
     color: #fff;
     padding: 10px 20px;
     outline: none;
+    font-size:14px;
 }
 
 input[readonly] {

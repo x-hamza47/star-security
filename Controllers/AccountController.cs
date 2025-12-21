@@ -17,10 +17,12 @@ namespace Star_Security.Controllers
             this.userManager = userManager;
             this.signInManager = signInManager;
         }
+
         public IActionResult Login()
         {
             return View();
         }
+
         [HttpPost]
         public async Task<IActionResult> Login(LoginVM model)
         {
@@ -43,6 +45,13 @@ namespace Star_Security.Controllers
             }
             TempData["LoginError"] = "Invalid email or password!";
             return View(model);
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await signInManager.SignOutAsync();
+            return RedirectToAction("Login", "Account");
         }
     }
 }

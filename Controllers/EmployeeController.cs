@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -31,23 +32,41 @@ namespace Star_Security.Controllers
             var adminIds = admins.Select(u => u.Id).ToHashSet();
 
             var employees = context.Users
-             .Include(u => u.Department)
-             .Include(u => u.Grade)
-             .Include(u => u.Client)
-             .Where(u => u.Id != currentUserId && !adminIds.Contains(u.Id))
-             .Select(u => new
-             {
-                 Id = u.Id,
-                 EmpCode = u.EmpCode,
-                 Name = u.Name,
-                 Email = u.Email,
-                 Contact = u.Contact,
-                 Department = u.Department != null ? u.Department.Name : "",
-                 Grade = u.Grade != null ? u.Grade.Name : "",
-                 Client = u.Client != null ? u.Client.Name : "",
-                 Achievements = u.Achievements,
-                 CreatedAt = u.CreatedAt
-             }).ToList();
+              .Include(u => u.Department)
+              .Include(u => u.Grade)
+              .Include(u => u.Client)
+              .Where(u => u.Id != currentUserId && !adminIds.Contains(u.Id))
+              .Select(u => new EmployeeListVM
+              {
+                  Id = u.Id,
+                  EmpCode = u.EmpCode,
+                  Name = u.Name,
+                  Email = u.Email,
+                  Contact = u.Contact,
+
+                  DepartmentId = u.DepartmentId,
+                  Department = u.Department != null ? u.Department.Name : "",
+
+                  GradeId = u.GradeId,
+                  Grade = u.Grade != null ? u.Grade.Name : "",
+
+                  ClientId = u.ClientId,
+                  Client = u.Client != null ? u.Client.Name : "",
+
+                  Achievements = u.Achievements,
+                  CreatedAt = u.CreatedAt
+              })
+          .ToList();
+
+            ViewBag.Departments = context.Departments
+                .Where(d => d.IsActive)
+                .Select(d => new { d.Id, d.Name })
+                .ToList();
+
+            ViewBag.Grades = context.Grades
+                .Where(g => g.IsActive)
+                .Select(g => new { g.Id, g.Name })
+                .ToList();
 
             return View(employees);
         }
@@ -161,5 +180,69 @@ namespace Star_Security.Controllers
 
             return View(model);
         }
+
+        [HttpPost]
+        public async Task<IActionResult> Edit(EditEmployeeVM model)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest("Invalid data");
+
+            var user = await userManager.FindByIdAsync(model.Id);
+
+            if (user == null)
+                return NotFound("Employee not found");
+
+            user.EmpCode = model.EmpCode;
+            user.Name = model.Name;
+            user.Email = model.Email;
+            user.UserName = "User-" + model.EmpCode;
+            user.DepartmentId = model.DepartmentId;
+            user.GradeId = model.GradeId;
+
+            var result = await userManager.UpdateAsync(user);
+
+            if (!result.Succeeded)
+                return BadRequest(result.Errors.First().Description);
+
+            return Ok("Employee updated successfully");
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(string id)
+        {
+            if (string.IsNullOrEmpty(id))
+            {
+                return Json(new { success = false, message = "Invalid employee id" });
+            }
+
+            var user = await userManager.FindByIdAsync(id);
+
+            if (user == null)
+            {
+                return Json(new { success = false, message = "Employee not found" });
+            }
+            var roles = await userManager.GetRolesAsync(user);
+            if (roles.Any())
+            {
+                await userManager.RemoveFromRolesAsync(user, roles);
+            }
+            var result = await userManager.DeleteAsync(user);
+
+            if (!result.Succeeded)
+            {
+                return Json(new
+                {
+                    success = false,
+                    message = result.Errors.First().Description
+                });
+            }
+
+            return Json(new
+            {
+                success = true,
+                message = "Employee deleted successfully"
+            });
+        }
+
     }
 }

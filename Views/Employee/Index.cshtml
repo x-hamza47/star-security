@@ -1,4 +1,4 @@
-﻿
+﻿@model List<Star_Security.ViewModels.EmployeeListVM>
 @section AlertsSection {
     @await Html.PartialAsync("_Alert")
 }
@@ -26,17 +26,16 @@
                 <td>@employee.Client</td>
                 <td>
                     <div class="d-flex align-items-center justify-content-center gap-2">
-                        <button class="btn btn-purple btn-sm edit-dept-btn"
+                        <button class="btn btn-purple btn-sm edit-emp-btn"
                                 data-id="@employee.Id"
                                 data-code="@employee.EmpCode"
                                 data-name="@employee.Name"
                                 data-email="@employee.Email"
-                                data-department="@employee.Department"
-                                data-grade="@employee.Grade"
-                                data-client="@employee.Client">
+                                data-departmentid="@employee.DepartmentId"
+                                data-gradeid="@employee.GradeId">
                             <span class="material-symbols-rounded">edit</span>
                         </button>
-                        <a class="btn btn-red btn-sm text-white delete-dept-btn">
+                        <a class="btn btn-red btn-sm text-white delete-emp-btn" data-id="@employee.Id">
                             <span class="material-symbols-rounded">
                                 delete
                             </span>
@@ -52,6 +51,10 @@
 @section Scripts {
     <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.3.5/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        const departments = @Html.Raw(Json.Serialize(ViewBag.Departments));
+        const grades = @Html.Raw(Json.Serialize(ViewBag.Grades));
+    </script>
     <script src="~/dashboard/js/employees.js"></script>
 }
 
