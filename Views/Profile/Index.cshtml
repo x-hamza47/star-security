@@ -1,0 +1,128 @@
+﻿@model Star_Security.ViewModels.ProfileVM;
+@section AlertsSection {
+    @await Html.PartialAsync("_Alert")
+}
+<div class="wrapper">
+    @if (!ViewData.ModelState.IsValid)
+    {
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            @Html.ValidationSummary(false)
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    }
+    <form asp-action="Edit" method="post" class="d-flex flex-column gap-3" enctype="multipart/form-data">
+        <div>
+            <h1>My Profile</h1>
+        </div>
+
+        <div class="profile-content">
+            <!-- Profile-pic -->
+            <div class=" image profile-wrapper">
+                <img src="@Model.ExistingProfileImage" id="preview" class="profile-image" alt="Profile" />
+                <label for="fileInput" class="edit-icon" title="Upload Pic">
+                    <span class="material-symbols-rounded">edit</span>
+                </label>
+                <input type="file" asp-for="ProfileImageFile" id="fileInput" accept="image/*" />
+            </div>
+            <!-- profile pic end -->
+            <div class="user-details">
+                <span>
+                    <h3>@Model.Name</h3>
+                    <p class="m-0">
+                        <span class="material-symbols-rounded user-select-none">apartment</span>
+                        @Model.DepartmentName
+                    </p>
+                    <p class="m-0">
+                        <span class="material-symbols-rounded user-select-none">mail</span>
+                        @Model.Email
+                    </p>
+
+                </span>
+            </div>
+        </div>
+        <div class="inp-fields">
+            <!-- Full Name -->
+            <div class="inp-bx">
+                <label for="name">Full Name</label>
+                <div class="input-wrap">
+                    <input id="name"
+                           type="text"
+                           asp-for="Name"
+                           placeholder="Employee name" />
+                    <span class="material-symbols-rounded">person</span>
+                    <span asp-validation-for="Name" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Email -->
+            <div class="inp-bx">
+                <label for="email">Email</label>
+                <div class="input-wrap">
+                    <input id="email"
+                           type="email"
+                           asp-for="Email"
+                           placeholder="john@gmail.com" />
+                    <span class="material-symbols-rounded">mail</span>
+                    <span asp-validation-for="Email" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Contact Number -->
+            <div class="inp-bx">
+                <label for="contact">Contact Number</label>
+                <div class="input-wrap">
+                    <input id="contact"
+                           type="tel"
+                           asp-for="Contact"
+                           placeholder="+92 300 1234567" />
+                    <span class="material-symbols-rounded">phone</span>
+                    <span asp-validation-for="Contact" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="inp-bx full-width">
+                <label for="address">Address</label>
+                <div class="input-wrap">
+                    <input id="address"
+                           type="text"
+                           asp-for="Address"
+                           placeholder="Employee address" />
+                    <span class="material-symbols-rounded">home</span>
+                    <span asp-validation-for="Address" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Qualification -->
+            <div class="inp-bx">
+                <label for="qualification">Educational Qualification</label>
+                <div class="input-wrap">
+                    <input id="qualification"
+                           type="text"
+                           asp-for="Education"
+                           placeholder="BS Computer Science" />
+                    <span class="material-symbols-rounded">school</span>
+                    <span asp-validation-for="Education" class="text-danger validation-span"></span>
+                </div>
+            </div>
+            <button type="submit" class="btn add-btn mt-2">Update Profile</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        const fileInput = document.getElementById('fileInput');
+        const preview = document.getElementById('preview');
+
+        fileInput.addEventListener('change', function() {
+            const file = this.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+}

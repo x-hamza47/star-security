@@ -20,7 +20,7 @@ builder.Services.AddIdentity<AppUser, IdentityRole>(options =>
         options.Password.RequiredLength = 6;
         options.User.RequireUniqueEmail = true;
         options.SignIn.RequireConfirmedEmail = false;
-        options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_. ";
+        options.User.AllowedUserNameCharacters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_.@";
     }
 )
 .AddEntityFrameworkStores<ApplicationDbContext>()
