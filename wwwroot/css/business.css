@@ -1,0 +1,117 @@
+.business-section {
+padding: 100px 0;
+background: var(--bg-linear-dark);
+}
+
+
+.section-title {
+text-align: center;
+margin-bottom: 60px;
+}
+
+
+.section-title h2 {
+font-size: 2.6rem;
+font-weight: 700;
+background: var(--accent-linear);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+
+.section-title p {
+max-width: 680px;
+margin: 15px auto 0;
+color: #b9b9d6;
+}
+
+
+.business-card {
+background: radial-gradient(circle at top left, rgba(255,255,255,0.04), transparent 60%), var(--color-bg-panel);
+border: 1px solid rgba(255,255,255,0.06);
+border-radius: 20px;
+padding: 35px 30px;
+height: 100%;
+transition: all .4s ease;
+position: relative;
+overflow: hidden;
+}
+
+
+.business-card::before {
+content: "";
+position: absolute;
+inset: 0;
+background: var(--accent-linear);
+opacity: 0;
+transition: opacity .4s ease;
+z-index: 0;
+}
+
+
+.business-card:hover::before {
+opacity: .12;
+}
+
+
+.business-card:hover {
+transform: translateY(-10px);
+box-shadow: 0 30px 60px rgba(0,0,0,.6);
+}
+
+
+.business-card * {
+position: relative;
+z-index: 1;
+}
+
+
+.icon-box {
+width: 60px;
+height: 60px;
+border-radius: 14px;
+background: var(--accent-linear);
+display: grid;
+place-items: center;
+margin-bottom: 25px;
+box-shadow: 0 10px 30px rgba(106,30,177,.4);
+}
+
+
+.icon-box span {
+font-size: 30px;
+color: #fff;
+}
+
+
+.business-card h5 {
+font-size: 1.3rem;
+font-weight: 600;
+margin-bottom: 12px;
+}
+
+
+.business-card p {
+font-size: .95rem;
+color: #c2c2de;
+line-height: 1.7;
+}
+
+
+/* Swiper custom */
+.swiper-pagination-bullet {
+background: #7f5bff;
+opacity: .4;
+}
+
+
+.swiper-pagination-bullet-active {
+opacity: 1;
+}
+
+
+@media (max-width: 768px) {
+.section-title h2 {
+font-size: 2.1rem;
+}
+}

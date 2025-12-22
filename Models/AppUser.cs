@@ -23,6 +23,9 @@ namespace Star_Security.Models
 
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+        public int? HiredFromVacancyId { get; set; }
+        public Vacancy? HiredFromVacancy { get; set; }
+        public ICollection<ClientAssignment> ClientAssignments { get; set; } = new List<ClientAssignment>();
 
     }
 }

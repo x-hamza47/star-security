@@ -1,0 +1,61 @@
+﻿@model Star_Security.ViewModels.ClientAssignmentVM;
+
+<div class="wrapper">
+    <form asp-action="Assign" method="post" class="d-flex flex-column gap-3" asp-antiforgery="true">
+        <h1>Assign Client</h1>
+
+        <input type="hidden" asp-for="ClientId" />
+
+        <!-- Department Dropdown -->
+        <div class="inp-bx">
+            <label for="department">Department</label>
+            <div class="input-wrap">
+                <select id="department" asp-for="DepartmentId" class="form-select">
+                    <option value="">-- Select Department --</option>
+                    @foreach (var d in Model.Departments)
+                    {
+                        <option value="@d.Value">@d.Text</option>
+                    }
+                </select>
+                <span asp-validation-for="DepartmentId" class="text-danger validation-span"></span>
+            </div>
+        </div>
+
+        <!-- Employee Dropdown -->
+        <div class="inp-bx">
+            <label for="employee">Employee</label>
+            <div class="input-wrap">
+                <select id="employee" asp-for="EmployeeId" class="form-select">
+                    <option value="">-- Select Employee --</option>
+                </select>
+            </div>
+        </div>
+
+        <button type="submit" class="btn add-btn mt-3">Assign Client</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        $('#department').on('change', function () {
+            var departmentId = $(this).val();
+            if (!departmentId) {
+                $('#employee').html('<option value="">-- Select Employee --</option>');
+                return;
+            }
+
+            $.ajax({
+                url: '/Client/GetEmployeesByDepartment',
+                type: 'GET',
+                data: { departmentId: departmentId },
+                success: function (employees) {
+                    let options = '<option value="">-- Select Employee --</option>';
+                    employees.forEach(emp => {
+                        options += `<option value="${emp.id}">${emp.name}</option>`;
+                    });
+                    $('#employee').html(options);
+                }
+            });
+        });
+    </script>
+}

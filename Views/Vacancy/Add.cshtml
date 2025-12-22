@@ -1,0 +1,118 @@
+﻿@model Star_Security.ViewModels.VacancyCreateVM
+
+<div class="wrapper">
+    @if (TempData["ValidationErrors"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ValidationErrors"]
+        </div>
+    }
+
+    <form asp-action="Add" method="post" class="d-flex flex-column gap-3" >
+        <div>
+            <h1>Add Vacancy</h1>
+        </div>
+
+        <div class="inp-fields">
+
+            <!-- Job Title -->
+            <div class="inp-bx full-width">
+                <label for="title">Job Title</label>
+                <div class="input-wrap">
+                    <input id="title" type="text" asp-for="Title" placeholder="Job Title" />
+                    <span class="material-symbols-rounded">work</span>
+                    <span asp-validation-for="Title" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Department -->
+            <div class="inp-bx">
+                <label for="department">Department</label>
+                <div class="input-wrap">
+                    <select id="department" asp-for="DepartmentId" asp-items="Model.Departments">
+                        <option value="">-- Select Department --</option>
+                    </select>
+                    <span asp-validation-for="DepartmentId" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- SubService -->
+            <div class="inp-bx">
+                <label for="subService">SubService</label>
+                <div class="input-wrap">
+                    <select id="subService" asp-for="SubServiceId">
+                        <option value="">-- Select SubService --</option>
+                    </select>
+                    <span asp-validation-for="SubServiceId" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Grade -->
+            <div class="inp-bx">
+                <label for="grade">Grade</label>
+                <div class="input-wrap">
+                    <select id="grade" asp-for="GradeId" asp-items="Model.Grades">
+                        <option value="">-- Select Grade --</option>
+                    </select>
+                    <span asp-validation-for="GradeId" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            
+            <div class="inp-bx">
+                <label for="requiredStaff">Required Staff</label>
+                <div class="input-wrap">
+                    <input id="requiredStaff" type="number" asp-for="RequiredStaff" placeholder="Number of Staff" />
+                    <span class="material-symbols-rounded">group</span>
+                    <span asp-validation-for="RequiredStaff" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+           
+            <div class="inp-bx">
+                <label for="lastDate">Last Date to Apply</label>
+                <div class="input-wrap">
+                    <input id="lastDate" type="date" asp-for="LastDate" />
+                    <span class="material-symbols-rounded">calendar_today</span>
+                    <span asp-validation-for="LastDate" class="text-danger validation-span"></span>
+                </div>
+            </div>
+        </div>
+           
+            <div class="form-check form-switch mt-2">
+                <input class="form-check-input" type="checkbox" id="isActive" asp-for="IsActive" checked>
+                <label class="form-check-label" for="isActive">Active</label>
+            </div>
+
+        <button type="submit" class="btn add-btn mt-3">Add Vacancy</button>
+    </form>
+</div>
+
+@section Scripts {
+    <script>
+        $('#department').on('change', function () {
+            var departmentId = $(this).val();
+
+            if (!departmentId) {
+                $('#subService').html('<option value="">-- Select SubService --</option>');
+                return;
+            }
+
+            $.ajax({
+                url: '/Vacancy/GetSubServicesByDepartment',
+                type: 'GET',
+                data: { departmentId: departmentId },
+                success: function (subServices) {
+                    let options = '<option value="">-- Select SubService --</option>';
+                    subServices.forEach(s => {
+                        options += `<option value="${s.id}">${s.name}</option>`;
+                    });
+                    $('#subService').html(options);
+                },
+                error: function () {
+                    $('#subService').html('<option value="">-- Error loading SubServices --</option>');
+                }
+            });
+        });
+    </script>
+}

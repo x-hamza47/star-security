@@ -1,0 +1,92 @@
+﻿@model List<Vacancy>
+@section AlertsSection {
+    @await Html.PartialAsync("_Alert")
+}
+
+<table id="vacancyTable" class="table-custom hover cell-border table-striped text-center">
+    <thead>
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Title</th>
+            <th class="text-center">Department</th>
+            <th class="text-center">SubService</th>
+            <th class="text-center">Grade</th>
+            <th class="text-center">Required Staff</th>
+            <th class="text-center">Filled Staff</th>
+            <th class="text-center">Last Date</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var vacancy in Model)
+        {
+            <tr>
+                <td>@vacancy.Id</td>
+                <td>@vacancy.Title</td>
+                <td>@vacancy.Department?.Name</td>
+                <td>
+                    @if (vacancy.SubService != null)
+                    {
+                        @vacancy.SubService.Name
+                    }
+                    else
+                    {
+                        <span class="text-muted">N/A</span>
+                    }
+                </td>
+                <td>@vacancy.Grade?.Name</td>
+                <td>@vacancy.RequiredStaff</td>
+                <td>@vacancy.FilledStaff</td>
+                <td>@vacancy.LastDate.ToString("yyyy-MM-dd")</td>
+                <td>
+                    @if (vacancy.IsActive)
+                    {
+                        <span class="badge text-bg-success w-50 py-2">Active</span>
+                    }
+                    else
+                    {
+                        <span class="badge text-bg-secondary w-50 py-2">Inactive</span>
+                    }
+                </td>
+                <td>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button class="btn btn-purple btn-sm edit-vacancy-btn"
+                                data-id="@vacancy.Id"
+                                data-title="@vacancy.Title"
+                                data-departmentid="@vacancy.DepartmentId"
+                                data-subserviceid="@vacancy.SubServiceId"
+                                data-gradeid="@vacancy.GradeId"
+                                data-requiredstaff="@vacancy.RequiredStaff"
+                                data-filledup="@vacancy.FilledStaff"
+                                data-lastdate="@vacancy.LastDate.ToString("yyyy-MM-dd")"
+                                data-active="@vacancy.IsActive">
+                            <span class="material-symbols-rounded">edit</span>
+                        </button>
+
+                        <button class="btn btn-red btn-sm delete-vacancy-btn" data-id="@vacancy.Id">
+                            <span class="material-symbols-rounded">delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+             const departments = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.Departments));
+        const grades = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.Grades));
+        const subServices = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(ViewBag.SubServices));
+    </script>
+    <script src="~/dashboard/js/vacancy.js"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/dashboard/css/tables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.bootstrap5.min.css" />
+}

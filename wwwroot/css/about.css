@@ -1,0 +1,112 @@
+/* ===========================
+   ABOUT SECTION – MODERN CARDS
+=========================== */
+
+/* History / Growth cards */
+#about .rounded-4 {
+  background: rgba(13, 16, 37, 0.75);
+  backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 20px 50px rgba(0, 0, 0, 0.55),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  transition: all 0.35s ease;
+}
+
+#about .rounded-4:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 30px 80px rgba(0, 0, 0, 0.7),
+    inset 0 0 0 1px rgba(106, 30, 177, 0.25);
+}
+
+/* Chairman image */
+#about img.rounded-4 {
+  border-radius: 24px;
+  box-shadow:
+    0 25px 80px rgba(0, 0, 0, 0.7);
+}
+
+/* ===========================
+   DIRECTOR CARDS
+=========================== */
+
+.director-card {
+  background: linear-gradient(
+    160deg,
+    rgba(28, 1, 71, 0.85),
+    rgba(13, 16, 37, 0.95)
+  );
+  backdrop-filter: blur(16px);
+  border-radius: 24px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow:
+    0 20px 60px rgba(0, 0, 0, 0.6),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.03);
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Glow border on hover */
+.director-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(106, 30, 177, 0.35),
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.director-card:hover::before {
+  opacity: 1;
+}
+
+.director-card:hover {
+  transform: translateY(-10px);
+  box-shadow:
+    0 35px 90px rgba(0, 0, 0, 0.8),
+    0 0 30px rgba(106, 30, 177, 0.25);
+}
+
+/* Director images */
+.director-card img {
+    width: 160px;
+    height: 160px;
+  border: 3px solid rgba(106, 30, 177, 0.45);
+  padding: 4px;
+  background: var(--color-bg-dark);
+}
+
+/* Director text */
+.director-card h6 {
+  margin-top: 12px;
+  font-weight: 600;
+}
+
+.director-card small {
+  color: #b7b3e0 !important;
+}
+
+/* ===========================
+   BADGE PREMIUM UPGRADE
+=========================== */
+
+.badge-premium {
+  display: inline-block;
+  padding: 6px 16px;
+  border-radius: 50px;
+  background: linear-gradient(
+    120deg,
+    rgba(106, 30, 177, 0.25),
+    rgba(28, 1, 71, 0.9)
+  );
+  color: #d7ccff;
+  font-size: 0.85rem;
+  border: 1px solid rgba(106, 30, 177, 0.4);
+}

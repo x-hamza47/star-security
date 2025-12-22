@@ -1,0 +1,42 @@
+﻿@model Star_Security.ViewModels.SubServiceCreateVM;
+
+<div class="wrapper">
+    <form asp-action="Add" method="post" class="d-flex flex-column gap-3">
+        <div>
+            <h1>Add Service</h1>
+        </div>
+        <div class="inp-fields">
+            <!-- SubService Name -->
+            <div class="inp-bx full-width">
+                <label for="name">SubService Name</label>
+                <div class="input-wrap">
+                    <input id="name" type="text" asp-for="Name" placeholder="SubService Name" />
+                    <span class="material-symbols-rounded">apartment</span>
+                    <span asp-validation-for="Name" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Department Dropdown -->
+            <div class="inp-bx">
+                <label for="department">Department</label>
+                <div class="input-wrap">
+                    <select id="department" asp-for="DepartmentId" asp-items="Model.Departments">
+                        <option value="">-- Select Department --</option>
+                    </select>
+                    <span asp-validation-for="DepartmentId" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Description -->
+            <div class="inp-bx full-width">
+                <label for="description">Description</label>
+                <div class="input-wrap">
+                    <textarea id="description" asp-for="Description" placeholder="Brief description"></textarea>
+                    <span asp-validation-for="Description" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+        </div>
+        <button type="submit" class="btn add-btn">Add Service</button>
+    </form>
+</div>

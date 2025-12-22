@@ -1,0 +1,71 @@
+﻿@model List<Branch>
+@section AlertsSection {
+    @await Html.PartialAsync("_Alert")
+}
+<table id="branchTable" class="table-custom hover cell-border table-striped text-center">
+    <thead>
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Area</th>
+            <th class="text-center">Manager</th>
+            <th class="text-center">Contact</th>
+            <th class="text-center">Region</th>
+            <th class="text-center">Status</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var branch in Model)
+        {
+            <tr>
+                <td>@branch.Id</td>
+                <td>@branch.Name</td>
+                <td>@branch.Area</td>
+                <td>@branch.ManagerName</td>
+                <td>@branch.ContactNumber</td>
+                <td>@branch.Region?.Name</td>
+                <td>
+                    <span class="badge @(branch.IsActive ? "text-bg-success" : "text-bg-secondary")">
+                        @(branch.IsActive ? "Active" : "Inactive")
+                    </span>
+                </td>
+                <td>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button class="btn btn-purple btn-sm edit-branch-btn"
+                                data-id="@branch.Id"
+                                data-name="@branch.Name"
+                                data-area="@branch.Area"
+                                data-manager="@branch.ManagerName"
+                                data-contact="@branch.ContactNumber"
+                                data-latitude="@branch.Latitude"
+                                data-longitude="@branch.Longitude"
+                                data-region-id="@branch.RegionId"
+                                data-active="@branch.IsActive">
+                            <span class="material-symbols-rounded">edit</span>
+                        </button>
+                        <button class="btn btn-red btn-sm delete-branch-btn" data-id="@branch.Id">
+                            <span class="material-symbols-rounded">delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        const regions = @Html.Raw(Json.Serialize(ViewBag.Regions));
+    </script>
+    <script src="~/dashboard/js/branch.js"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/dashboard/css/tables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.bootstrap5.min.css" />
+}
