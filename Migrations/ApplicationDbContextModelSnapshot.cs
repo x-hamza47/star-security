@@ -635,42 +635,42 @@ namespace Star_Security.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9427),
+                            CreatedAt = new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(39),
                             Description = "Entry-level grade",
                             IsActive = true,
                             LevelCode = "JNR",
                             Name = "Junior",
-                            UpdatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9436)
+                            UpdatedAt = new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(48)
                         },
                         new
                         {
                             Id = 2,
-                            CreatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9438),
+                            CreatedAt = new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(51),
                             Description = "Intermediate grade",
                             IsActive = true,
                             LevelCode = "MID",
                             Name = "Mid-Level",
-                            UpdatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9439)
+                            UpdatedAt = new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(51)
                         },
                         new
                         {
                             Id = 3,
-                            CreatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9440),
+                            CreatedAt = new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(52),
                             Description = "Experienced grade",
                             IsActive = true,
                             LevelCode = "SNR",
                             Name = "Senior",
-                            UpdatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9440)
+                            UpdatedAt = new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(53)
                         },
                         new
                         {
                             Id = 4,
-                            CreatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9441),
+                            CreatedAt = new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(54),
                             Description = "Team lead grade",
                             IsActive = true,
                             LevelCode = "LD",
                             Name = "Lead",
-                            UpdatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9442)
+                            UpdatedAt = new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(54)
                         });
                 });
 
@@ -930,8 +930,12 @@ namespace Star_Security.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("int");
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .ValueGeneratedOnAdd()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)")
+                        .HasDefaultValue("Pending");
 
                     b.Property<int>("VacancyId")
                         .HasColumnType("int");

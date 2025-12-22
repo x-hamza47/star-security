@@ -1,0 +1,321 @@
+﻿@{
+    Layout = "_FrontLayout";
+}
+@model Star_Security.ViewModels.HomeVM;
+@using System.Linq
+<section class="hero">
+    <div class="hero-glow"></div>
+    <div class="container">
+        <div class="row align-items-center">
+            <!-- LEFT CONTENT -->
+            <div class="col-lg-6 hero-content">
+                <span class="badge-premium mb-3">
+                    <span class="material-symbols-rounded">verified</span>
+                    ISO 9001:2000 Certified
+                </span>
+                <h1 class="mt-4">Total Security<br />Solutions Provider</h1>
+                <p class="mt-3">
+                    Delivering premium manned guarding, cash logistics, investigations
+                    and electronic security services with absolute integrity and
+                    precision.
+                </p>
+
+                <div class="d-flex gap-3 mt-4 flex-wrap">
+                    <button class="btn-primary-custom">Explore Services</button>
+                    <button class="btn-outline-custom">Contact Us</button>
+                </div>
+
+                <div class="hero-stats">
+                    <div class="stat">
+                        <h4>250+</h4>
+                        <span>Corporate Clients</span>
+                    </div>
+                    <div class="stat">
+                        <h4>2800+</h4>
+                        <span>Trained Personnel</span>
+                    </div>
+                    <div class="stat">
+                        <h4>24</h4>
+                        <span>States Covered</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- RIGHT VISUAL -->
+            <div class="col-lg-6 text-center">
+                <div class="hero-visual">
+                    <span class="material-symbols-rounded">shield_lock</span>
+                    <h5 class="mt-3">Trusted Since 2000</h5>
+                    <p class="small text-muted">
+                        Advanced protection • Absolute reliability
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ABOUT US SECTION -->
+<section id="about" class="py-5" style="background: var(--color-bg-dark)">
+    <div class="container">
+        <div class="row mb-5">
+            <div class="col-lg-6">
+                <span class="badge-premium mb-3">About Star Securities</span>
+                <h2 class="fw-bold mt-3"
+                    style="font-size: clamp(2rem, 4vw, 2.8rem)">
+                    Two Decades of<br />Security Excellence
+                </h2>
+                <p class="mt-3 text-secondary">
+                    Established in the year 2000, Star Securities began its journey as
+                    an investigation firm and steadily evolved into a Total Security
+                    Solutions Provider. With a strong focus on integrity, innovation,
+                    and international compliance, Star today safeguards organizations
+                    across multiple industries and regions.
+                </p>
+            </div>
+        </div>
+
+        <!-- HISTORY -->
+        <div class="row g-4 align-items-center mb-5">
+            <div class="col-md-6">
+                <div class="p-4 rounded-4"
+                     style="background: var(--color-bg-panel)">
+                    <h5 class="fw-semibold">Our History</h5>
+                    <p class="small text-secondary mt-2">
+                        Founded as a specialized investigation firm, Star Securities
+                        expanded its services to include manned guarding, cash
+                        logistics, electronic security systems, and corporate
+                        investigations. Over the years, the organization has grown its
+                        footprint across 24 states, serving over 250 corporate clients.
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="p-4 rounded-4"
+                     style="background: linear-gradient(120deg, #0d002c, #000316)">
+                    <h5 class="fw-semibold">Our Growth</h5>
+                    <p class="small text-secondary mt-2">
+                        Backed by more than 2800 trained personnel and 100+ managers,
+                        Star continues to invest in advanced technology, workforce
+                        training, and ERP-driven operations to meet evolving security
+                        challenges.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- CHAIRMAN -->
+        <div class="row align-items-center mb-5 about-block">
+            <div class="col-lg-4 text-center">
+                <img src="https://images.unsplash.com/photo-1603415526960-f7e0328c63b1"
+                     class="img-fluid rounded-4"
+                     alt="Chairman" />
+            </div>
+
+            <div class="col-lg-8">
+                <h4>Chairman's Profile</h4>
+                <p class="text-muted mt-2">
+                    The Chairman of Star Securities is a visionary leader with
+                    extensive experience in security operations, risk management and
+                    strategic leadership.
+                </p>
+                <p class="text-muted">
+                    His emphasis on discipline, ethical practices and continuous
+                    improvement has positioned Star as a trusted name in the private
+                    security industry.
+                </p>
+            </div>
+        </div>
+
+        <!-- BOARD OF DIRECTORS -->
+        <div class="about-block">
+            <h4 class="text-center mb-4">Board of Directors</h4>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="p-4 rounded-4 text-center director-card">
+                        <img src="https://images.unsplash.com/photo-1595152772835-219674b2a8a6"
+                             class="img-fluid rounded-circle mb-3 object-fit-cover" />
+                        <h6 class="mb-1">Director Name</h6>
+                        <small class="text-muted">Operations & Strategy</small>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="p-4 rounded-4 text-center director-card">
+                        <img src="https://images.unsplash.com/photo-1607746882042-944635dfe10e"
+                             class="img-fluid rounded-circle mb-3 object-fit-cover" />
+                        <h6 class="mb-1">Director Name</h6>
+                        <small class="text-muted">Finance & Compliance</small>
+                    </div>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="p-4 rounded-4 text-center director-card">
+                        <img src="https://images.unsplash.com/photo-1544723795-3fb6469f5b39"
+                             class="img-fluid rounded-circle mb-3 object-fit-cover" />
+                        <h6 class="mb-1">Director Name</h6>
+                        <small class="text-muted">Technology & Innovation</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Buisness Section -->
+<section class="business-section" id="business">
+    <div class="container">
+        <div class="section-title">
+            <h2>Our Business</h2>
+            <p>
+                Integrated security and support services designed to protect, manage
+                and empower organizations across sectors.
+            </p>
+        </div>
+
+        <!-- Desktop Grid -->
+        <div class="row g-4 d-none d-md-flex">
+            @foreach (var dept in Model.Departments)
+            {
+                <div class="col-md-6 col-lg-3">
+                    <div class="business-card">
+                        <div class="icon-box">
+                            <span class="material-symbols-rounded">@(dept.Icon ?? "apartment")</span>
+                        </div>
+                        <h5>@dept.Name</h5>
+                        <p>@dept.Description</p>
+
+                        @if (((IEnumerable<Star_Security.Models.SubService>)dept.SubServices).Any())
+                        {
+                            <ul class="subservices-list mt-2">
+                                @foreach (var sub in dept.SubServices)
+                                {
+                                    <li>@sub.Name</li>
+                                }
+                            </ul>
+                        }
+                    </div>
+                </div>
+            }
+        </div>
+
+        <!-- Mobile Swiper -->
+        <div class="swiper d-md-none">
+            <div class="swiper-wrapper">
+                @foreach (var dept in Model.Departments)
+                {
+                    <div class="swiper-slide">
+                        <div class="business-card">
+                            <div class="icon-box">
+                                <span class="material-symbols-rounded">@(dept.Icon ?? "apartment")</span>
+                            </div>
+                            <h5>@dept.Name</h5>
+                            <p>@dept.Description</p>
+
+                            @if (((IEnumerable<Star_Security.Models.SubService>)dept.SubServices).Any())
+                            {
+                                <ul class="subservices-list mt-2">
+                                    @foreach (var sub in dept.SubServices)
+                                    {
+                                        <li>@sub.Name</li>
+                                    }
+                                </ul>
+                            }
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="swiper-pagination mt-4"></div>
+        </div>
+    </div>
+</section>
+
+<section class="network-section" id="network">
+    <div class="container">
+        <!-- Header -->
+        <div class="row mb-5">
+            <div class="col-lg-6">
+                <span class="badge-premium mb-3">Our Network</span>
+                <h2 class="fw-bold mt-3"
+                    style="font-size: clamp(2rem, 4vw, 2.8rem)">
+                    Regional Presence<br />Across Pakistan
+                </h2>
+                <p class="mt-3 text-secondary">
+                    Star Securities operates through strategically located branches
+                    across North, West, East, and South regions of Pakistan. Our
+                    network ensures rapid response, local expertise, and consistent
+                    quality in providing security solutions nationwide.
+                </p>
+            </div>
+        </div>
+
+        <!-- Stats -->
+        <div class="stats-bar reveal">
+            <div class="stat-card">
+                <h3 class="stat-count" id="statBranches">@Model.TotalBranches+</h3>
+                <p>Branches</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="stat-count" id="statOffices">@Model.Regions.Count</h3>
+                <p>Regional Offices</p>
+            </div>
+            <div class="stat-card">
+                <h3 class="stat-count" id="statStaff">12K+</h3>
+                <p>Personnel</p>
+            </div>
+            <div class="stat-card">
+                <h3>24/7</h3>
+                <p>Coverage</p>
+            </div>
+        </div>
+
+        <!-- Tabs -->
+        <div class="region-tabs">
+            @foreach (var region in Model.Regions)
+            {
+                <button class="region-btn @(region == Model.Regions.First() ? "active" : "")"
+                        data-region="@region.Name.ToLower()">
+                    @region.Name
+                </button>
+            }
+        </div>
+
+        <!-- Regions -->
+        @foreach (var region in Model.Regions)
+        {
+            <div id="@region.Name.ToLower()" class="network-content @(region == Model.Regions.First() ? "active" : "")">
+                <div class="row g-4">
+                    @foreach (var branch in region.Branches)
+                    {
+                        <div class="col-md-6 col-lg-3">
+                            <div class="branch-card reveal">
+                                <h6>@branch.Name</h6>
+                                <p>@branch.Area</p>
+                                <p><strong>Manager:</strong> @branch.ManagerName</p>
+                                <p><strong>Contact:</strong> @branch.ContactNumber</p>
+                                <button class="map-btn" data-lat="@branch.Latitude" data-lng="@branch.Longitude">
+                                    View Map
+                                </button>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</section>
+
+<!-- Map Modal -->
+<div class="modal fade" id="mapModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content bg-dark text-light">
+            <div class="modal-header border-0">
+                <h5 class="modal-title">Branch Location</h5>
+                <button type="button"
+                        class="btn-close btn-close-white"
+                        data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body"><div id="map"></div></div>
+        </div>
+    </div>
+</div>

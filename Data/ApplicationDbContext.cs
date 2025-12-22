@@ -112,6 +112,12 @@ namespace Star_Security.Data
                 .Property(u => u.UpdatedAt)
                 .HasDefaultValueSql("GETDATE()");
 
+            modelBuilder.Entity<VacancyApplication>()
+             .Property(v => v.Status)
+             .HasConversion<string>()
+             .HasMaxLength(20)
+             .HasDefaultValue(ApplicationStatus.Pending);
+
             // Seeders
             // Departments 
             modelBuilder.Entity<Department>().HasData(

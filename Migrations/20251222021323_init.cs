@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Star_Security.Migrations
 {
     /// <inheritdoc />
-    public partial class initial : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -269,7 +269,7 @@ namespace Star_Security.Migrations
                     Email = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Education = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Address = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Status = table.Column<int>(type: "int", nullable: false),
+                    Status = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false, defaultValue: "Pending"),
                     AppliedAt = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
@@ -418,10 +418,10 @@ namespace Star_Security.Migrations
                 columns: new[] { "Id", "CreatedAt", "Description", "IsActive", "LevelCode", "Name", "UpdatedAt" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9427), "Entry-level grade", true, "JNR", "Junior", new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9436) },
-                    { 2, new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9438), "Intermediate grade", true, "MID", "Mid-Level", new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9439) },
-                    { 3, new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9440), "Experienced grade", true, "SNR", "Senior", new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9440) },
-                    { 4, new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9441), "Team lead grade", true, "LD", "Lead", new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9442) }
+                    { 1, new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(39), "Entry-level grade", true, "JNR", "Junior", new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(48) },
+                    { 2, new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(51), "Intermediate grade", true, "MID", "Mid-Level", new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(51) },
+                    { 3, new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(52), "Experienced grade", true, "SNR", "Senior", new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(53) },
+                    { 4, new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(54), "Team lead grade", true, "LD", "Lead", new DateTime(2025, 12, 22, 7, 13, 23, 135, DateTimeKind.Local).AddTicks(54) }
                 });
 
             migrationBuilder.InsertData(

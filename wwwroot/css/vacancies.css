@@ -1,0 +1,185 @@
+﻿/* ===== Vacancy Section ===== */
+.vacancy-section {
+    background: var(--bg-linear-dark);
+    color: #fff;
+}
+
+    .vacancy-section h2 {
+        font-size: 2.6rem;
+        font-weight: 700;
+        background: var(--accent-linear);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .vacancy-section p {
+        color: #bdbbd3;
+    }
+
+/* ===== Vacancy Card ===== */
+.vacancy-card {
+    background: rgba(13, 16, 37, 0.75);
+    backdrop-filter: blur(18px);
+    border-radius: 22px;
+    padding: 25px;
+    height: 100%;
+    box-shadow: 0 20px 45px rgba(67, 23, 170, 0.35);
+    transition: all 0.35s ease;
+    border: 1px solid rgba(106, 30, 177, 0.2);
+}
+
+    .vacancy-card:hover {
+        transform: translateY(-12px);
+        box-shadow: 0 30px 60px rgba(106, 30, 177, 0.55);
+    }
+
+    .vacancy-card h5 {
+        font-weight: 600;
+        margin-bottom: 15px;
+    }
+
+.vacancy-meta p {
+    margin-bottom: 6px;
+    font-size: 0.95rem;
+}
+
+/* ===== Seats Badge ===== */
+.seats-badge {
+    display: inline-block;
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    background: rgba(106, 30, 177, 0.25);
+}
+
+/* ===== Apply Button ===== */
+.apply-btn {
+    background: var(--accent-linear);
+    border: none;
+    border-radius: 50px;
+    padding: 10px 28px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .apply-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 15px 30px rgba(106, 30, 177, 0.6);
+    }
+
+/* ===== Closed Badge ===== */
+.closed-badge {
+    background: rgba(220, 53, 69, 0.25);
+    color: #ff8a8a;
+    padding: 8px 18px;
+    border-radius: 30px;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* ===== Modal Styling ===== */
+.modal-content {
+    background: rgba(13, 16, 37, 0.85);
+    backdrop-filter: blur(20px);
+    border-radius: 25px;
+    border: 1px solid rgba(106, 30, 177, 0.25);
+    color: #fff !important;
+}
+
+.modal-header {
+    border-bottom: none;
+}
+
+.modal-footer {
+    border-top: none;
+}
+
+.modal-content input,
+.modal-content textarea {
+    background: rgba(255,255,255,0.05);
+    border: none;
+    color: #fff;
+    border-radius: 14px;
+    padding: 14px 18px;
+}
+
+    .modal-content input:focus,
+    .modal-content textarea:focus {
+        outline: none;
+        box-shadow: 0 0 12px rgba(106, 30, 177, 0.7);
+        background: rgba(255,255,255,0.1);
+    }
+
+.modal-footer .btn-success {
+    background: var(--accent-linear);
+    border: none;
+    border-radius: 50px;
+    padding: 10px 30px;
+}
+
+
+/* ===== Modern Modal ===== */
+/*.modern-modal {
+    background: rgba(13, 16, 37, 0.85);
+    backdrop-filter: blur(22px);
+    border-radius: 28px;
+    border: 1px solid rgba(106, 30, 177, 0.3);
+    box-shadow: 0 35px 80px rgba(106, 30, 177, 0.6);
+    color: #fff;
+}*/
+
+    /* Header */
+    /*.modern-modal .modal-header {
+        border-bottom: none;
+        padding: 25px 30px;
+    }
+
+    .modern-modal .modal-title {
+        font-weight: 600;
+        font-size: 1.4rem;
+        background: var(--accent-linear);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }*/
+
+    /* Body */
+    /*.modern-modal .modal-body {
+        padding: 10px 30px 30px;
+    }*/
+
+/* Inputs */
+/*.modern-input {
+    background: rgba(255, 255, 255, 0.05);
+    border: none;
+    border-radius: 16px;
+    padding: 14px 18px;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+    .modern-input:focus {
+        outline: none;
+        background: rgba(255, 255, 255, 0.12);
+        box-shadow: 0 0 15px rgba(106, 30, 177, 0.7);
+    }*/
+
+/* Footer */
+/*.modern-modal .modal-footer {
+    border-top: none;
+    padding: 20px 30px 30px;
+}*/
+
+/* Submit Button */
+/*.modern-submit {
+    background: var(--accent-linear);
+    border: none;
+    border-radius: 50px;
+    padding: 12px 36px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+    .modern-submit:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 20px 40px rgba(106, 30, 177, 0.7);
+    }*/
