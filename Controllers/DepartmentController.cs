@@ -49,7 +49,7 @@ namespace Star_Security.Controllers
             return View(department);
         }
         [HttpPost]
-        public async Task<IActionResult> Edit(int id, string name, string code, string description, bool isActive)
+        public async Task<IActionResult> Edit(int id, string name, string code,string icon, string description, bool isActive)
         {
             if (string.IsNullOrWhiteSpace(name))
                 return BadRequest("Department name is required");
@@ -67,6 +67,7 @@ namespace Star_Security.Controllers
 
             dept.Name = name;
             dept.Code = code;
+            dept.Icon = icon;
             dept.Description = description;
             dept.IsActive = isActive;
 

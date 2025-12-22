@@ -1,0 +1,49 @@
+﻿@model Client;
+<div class="wrapper">
+    @if (TempData["ValidationErrors"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ValidationErrors"]
+        </div>
+    }
+    <form asp-action="Add" method="post" class="d-flex flex-column gap-3" asp-antiforgery="true">
+        <div>
+            <h1>Add Client</h1>
+        </div>
+        <div class="inp-fields">
+
+            <!-- Client Name -->
+            <div class="inp-bx full-width">
+                <label for="name">Client Name</label>
+                <div class="input-wrap">
+                    <input id="name" type="text" asp-for="Name" placeholder="Client Name" />
+                    <span class="material-symbols-rounded">person</span>
+                    <span asp-validation-for="Name" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Contact Number -->
+            <div class="inp-bx">
+                <label for="contact">Contact Number</label>
+                <div class="input-wrap">
+                    <input id="contact" type="text" asp-for="Contact" placeholder="+923001234567" />
+                    <span class="material-symbols-rounded">phone</span>
+                    <span asp-validation-for="Contact" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Address -->
+            <div class="inp-bx full-width">
+                <label for="address">Address</label>
+                <div class="input-wrap">
+                    <textarea id="address" asp-for="Address" placeholder="Client Address"></textarea>
+                    <span class="material-symbols-rounded">home</span>
+                    <span asp-validation-for="Address" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <button type="submit" class="btn add-btn mt-3">Add Client</button>
+    </form>
+</div>

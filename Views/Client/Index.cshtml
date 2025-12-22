@@ -1,0 +1,78 @@
+﻿@model List<Client>
+@section AlertsSection {
+    @await Html.PartialAsync("_Alert")
+}
+
+<table id="clientTable" class="table-custom hover cell-border table-striped text-center">
+    <thead>
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Contact</th>
+            <th class="text-center">Address</th>
+            <th class="text-center">Assigned Departments</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var client in Model)
+        {
+            <tr>
+                <td>@client.Id</td>
+                <td>@client.Name</td>
+                <td>@client.Contact</td>
+                <td>@client.Address</td>
+                <td>
+                    @if (client.ClientAssignments != null && client.ClientAssignments.Any())
+                    {
+                        foreach (var ca in client.ClientAssignments)
+                        {
+                            <div>
+                                <strong>@ca.Department.Code</strong>
+                                @if (ca.Employee != null)
+                                {
+                                    <span>- @ca.Employee.Name</span>
+                                }
+                            </div>
+                        }
+                    }
+                    else
+                    {
+                        <span class="text-muted">None</span>
+                    }
+                </td>
+                <td>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button class="btn btn-purple btn-sm edit-client-btn"
+                                data-id="@client.Id"
+                                data-name="@client.Name"
+                                data-contact="@client.Contact"
+                                data-address="@client.Address">
+                            <span class="material-symbols-rounded">edit</span>
+                        </button>
+                        <button class="btn btn-red btn-sm delete-client-btn" data-id="@client.Id">
+                            <span class="material-symbols-rounded">delete</span>
+                        </button>
+
+                        <a href="@Url.Action("Assign", "Client", new { clientId = client.Id })"
+                           class="btn btn-success btn-sm">
+                            <span class="material-symbols-rounded">assignment</span>
+                        </a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="~/dashboard/js/client.js"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/dashboard/css/tables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.bootstrap5.min.css" />
+}

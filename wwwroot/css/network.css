@@ -1,0 +1,259 @@
+.network-section {
+padding: 100px 0;
+background: var(--bg-linear-dark);
+}
+
+
+.network-title {
+text-align: center;
+margin-bottom: 60px;
+}
+
+
+.network-title h2 {
+font-size: 2.6rem;
+font-weight: 700;
+background: var(--accent-linear);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+}
+
+
+.network-title p {
+max-width: 700px;
+margin: 15px auto 0;
+color: #b9b9d6;
+}
+
+
+.region-tabs {
+display: flex;
+justify-content: center;
+gap: 15px;
+flex-wrap: wrap;
+margin-bottom: 50px;
+}
+
+
+.region-btn {
+padding: 10px 22px;
+border-radius: 50px;
+background: var(--color-bg-panel);
+border: 1px solid rgba(255,255,255,0.08);
+color: #cfcfff;
+cursor: pointer;
+transition: all .3s ease;
+}
+
+.region-btn.active,
+.region-btn:hover {
+background: var(--accent-linear);
+color: #fff;
+box-shadow: 0 10px 25px rgba(106,30,177,.4);
+}
+
+
+.branch-card {
+background: radial-gradient(circle at top left, rgba(255,255,255,0.04), transparent 60%), var(--color-bg-panel);
+border: 1px solid rgba(255,255,255,0.06);
+border-radius: 18px;
+padding: 30px;
+height: 100%;
+transition: transform .4s ease, box-shadow .4s ease;
+}
+
+
+.branch-card:hover {
+transform: translateY(-8px);
+box-shadow: 0 25px 50px rgba(0,0,0,.6);
+}
+
+
+.branch-header {
+display: flex;
+align-items: center;
+gap: 15px;
+margin-bottom: 20px;
+}
+
+
+.branch-icon {
+width: 50px;
+height: 50px;
+border-radius: 14px;
+background: var(--accent-linear);
+display: grid;
+place-items: center;
+}
+
+
+.branch-icon span {
+color: #fff;
+font-size: 26px;
+}
+
+
+.branch-card h5 {
+margin: 0;
+font-weight: 600;
+}
+
+.branch-info {
+font-size: .95rem;
+color: #c2c2de;
+line-height: 1.7;
+}
+
+
+.branch-info span {
+display: block;
+margin-bottom: 8px;
+}
+
+
+.branch-info strong {
+color: #fff;
+font-weight: 500;
+}
+
+
+.network-content {
+display: none;
+}
+
+
+.network-content.active {
+display: block;
+animation: fadeUp .6s ease;
+}
+
+
+@keyframes fadeUp {
+from {opacity: 0; transform: translateY(20px);}
+to {opacity: 1; transform: translateY(0);}
+}
+
+
+@media (max-width: 768px) {
+.network-title h2 {
+font-size: 2.1rem;
+}
+}
+
+.stats-bar {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+gap: 25px;
+margin-bottom: 80px;
+}
+
+
+.stat-card {
+background: var(--color-bg-panel);
+border-radius: 18px;
+padding: 30px;
+text-align: center;
+border: 1px solid rgba(255,255,255,0.06);
+}
+
+
+.stat-card h3 {
+font-size: 2.4rem;
+background: var(--accent-linear);
+-webkit-background-clip: text;
+-webkit-text-fill-color: transparent;
+margin-bottom: 8px;
+}
+
+
+.stat-card p { color: #b9b9d6; margin: 0; }
+
+
+.branch-card {
+background: var(--color-bg-panel);
+border-radius: 18px;
+padding: 28px;
+border: 1px solid rgba(255,255,255,0.06);
+transition: .4s ease;
+}
+
+
+/* .branch-card:hover { transform: translateY(-8px); } */
+
+
+/* .map-btn {
+margin-top: 15px;
+background: var(--accent-linear);
+border: none;
+color: #fff;
+padding: 8px 16px;
+border-radius: 20px;
+font-size: .85rem;
+} */
+
+
+.network-section { padding: 100px 0; background: var(--bg-linear-dark); }
+
+
+.stat-card p { color: #b9b9d6; margin: 0; }
+
+
+/* Tabs */
+.region-tabs {
+display: flex;
+justify-content: center;
+gap: 15px;
+flex-wrap: wrap;
+margin-bottom: 50px;
+}
+
+
+.region-btn {
+padding: 10px 22px;
+border-radius: 50px;
+background: var(--color-bg-panel);
+border: 1px solid rgba(255,255,255,0.08);
+color: #cfcfff;
+cursor: pointer;
+transition: .3s ease;
+}
+
+
+.region-btn.active,
+.region-btn:hover {
+background: var(--accent-linear);
+color: #fff;
+box-shadow: 0 10px 25px rgba(106,30,177,.4);
+}
+
+
+/* Branch cards */
+.branch-card {
+background: var(--color-bg-panel);
+border-radius: 18px;
+padding: 26px;
+border: 1px solid rgba(255,255,255,0.06);
+transition: .4s ease;
+height: 100%;
+}
+
+
+.branch-card:hover { transform: translateY(-8px); }
+
+
+.map-btn {
+margin-top: 12px;
+background: var(--accent-linear);
+border: none;
+color: #fff;
+padding: 7px 16px;
+border-radius: 20px;
+font-size: .85rem;
+}
+
+
+.network-content { display: none; }
+.network-content.active { display: block; }
+
+
+#map { height: 360px; border-radius: 16px; }

@@ -6,6 +6,8 @@
         public string Name { get; set; }
         public string Contact { get; set; }
         public string Address { get; set; }
-        public ICollection<AppUser> Users { get; set; } = new List<AppUser>();
+  
+        public ICollection<ClientAssignment> ClientAssignments { get; set; } = new List<ClientAssignment>();
+
     }
 }

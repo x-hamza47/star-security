@@ -32,6 +32,17 @@
                     <span asp-validation-for="Code" class="text-danger validation-span"></span>
                 </div>
             </div>
+            <div class="inp-bx">
+                <label for="icon">Department Icon</label>
+                <div class="input-wrap">
+                    <input id="icon"
+                           type="text"
+                           asp-for="Icon"
+                           placeholder="Icon Name (e.g., security, finance)" />
+                    <span class="material-symbols-rounded">emoji_symbols</span>
+                    <span asp-validation-for="Icon" class="text-danger validation-span"></span>
+                </div>
+            </div>
         </div>
 
         <div class="inp-bx full-width mt-3">

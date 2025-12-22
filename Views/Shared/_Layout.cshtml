@@ -110,6 +110,50 @@
                         </li>
                     </ul>
                 </li>
+                <!--Service Dropdown -->
+                <li class="nav-item drop-container">
+                    <a href="#" class="nav-link drop-toggle">
+                        <span class="material-symbols-rounded"> build_circle </span>
+                        <span class="nav-label">Manage Service</span>
+                        <span class="material-symbols-rounded drop-icon">
+                            keyboard_arrow_down
+                        </span>
+                    </a>
+                    <!-- Dropdown Menu -->
+                    <ul class="drop-menu">
+                        <li class="nav-item">
+                            <a class="nav-link drop-title">Manage Service</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="SubService" asp-action="Index" class="nav-link drop-link">All Services</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="SubService" asp-action="Add" class="nav-link drop-link">Add Service</a>
+                        </li>
+                    </ul>
+                </li>
+                <!--Branch Dropdown -->
+                <li class="nav-item drop-container">
+                    <a href="#" class="nav-link drop-toggle">
+                        <span class="material-symbols-rounded"> location_city </span>
+                        <span class="nav-label">Manage Branch</span>
+                        <span class="material-symbols-rounded drop-icon">
+                            keyboard_arrow_down
+                        </span>
+                    </a>
+                    <!-- Dropdown Menu -->
+                    <ul class="drop-menu">
+                        <li class="nav-item">
+                            <a class="nav-link drop-title">Manage Branch</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Branch" asp-action="Index" class="nav-link drop-link">All Branch</a>
+                        </li>
+                        <li class="nav-item">
+                            <a asp-controller="Branch" asp-action="Add" class="nav-link drop-link">Add Branch</a>
+                        </li>
+                    </ul>
+                </li>
                 <!-- Grades Dropdown -->
                 <li class="nav-item drop-container">
                     <a href="#" class="nav-link drop-toggle">
@@ -141,7 +185,68 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
+
+                <li class="nav-item drop-container">
+                    <a href="#" class="nav-link drop-toggle">
+                        <span class="material-symbols-rounded"> people </span>
+                        <span class="nav-label">Manage Clients</span>
+                        <span class="material-symbols-rounded drop-icon">
+                            keyboard_arrow_down
+                        </span>
+                    </a>
+
+                    <!-- Dropdown Menu -->
+                    <ul class="drop-menu">
+                        <li class="nav-item">
+                            <a class="nav-link drop-title">Manage Clients</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a asp-controller="Client" asp-action="Index"
+                               class="nav-link drop-link">
+                                All Clients
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a asp-controller="Client" asp-action="Add"
+                               class="nav-link drop-link">
+                                Add Client
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item drop-container">
+                    <a href="#" class="nav-link drop-toggle">
+                        <span class="material-symbols-rounded"> work_outline </span>
+                        <span class="nav-label">Manage Vacancy</span>
+                        <span class="material-symbols-rounded drop-icon">
+                            keyboard_arrow_down
+                        </span>
+                    </a>
+
+                    <!-- Dropdown Menu -->
+                    <ul class="drop-menu">
+                        <li class="nav-item">
+                            <a class="nav-link drop-title">Manage Vacancy</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a asp-controller="Vacancy" asp-action="Index"
+                               class="nav-link drop-link">
+                                All Vacancies
+                            </a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a asp-controller="Vacancy" asp-action="Add"
+                               class="nav-link drop-link">
+                                Add Vacancy
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                @* <li class="nav-item">
                     <a href="#" class="nav-link">
                         <span class="material-symbols-rounded"> notifications </span>
                         <span class="nav-label">Notifications</span>
@@ -163,7 +268,7 @@
                             <a class="nav-link drop-title">Settings</a>
                         </li>
                     </ul>
-                </li>
+                </li> *@
             </ul>
             <!-- Bottom Nav -->
             <ul class="nav-list sec-nav">

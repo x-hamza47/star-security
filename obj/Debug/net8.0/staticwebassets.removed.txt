@@ -1,5 +1,1 @@
-F:\Projects\E-Project\Star-Security\wwwroot\images\profiles\125b8c76-9f2d-4463-aa33-0f5c2b653710.jpeg
-F:\Projects\E-Project\Star-Security\wwwroot\images\profiles\1bf5f9ce-dba8-43e0-885c-166eda7cd8d3.jpeg
-F:\Projects\E-Project\Star-Security\wwwroot\images\profiles\87c2a54c-416c-4193-9e35-02b627fa4788.jpeg
-F:\Projects\E-Project\Star-Security\wwwroot\images\profiles\c98c1700-bbfc-46d2-84ba-a7b4cbf6c4fb.png
-F:\Projects\E-Project\Star-Security\wwwroot\images\profiles\d51e51db-691b-4595-ab3d-c5c3f8d467c3.jpeg
+F:\Projects\E-Project\Star-Security\wwwroot\css\site.css

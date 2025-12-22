@@ -1,0 +1,56 @@
+﻿@model List<SubService>
+@section AlertsSection {
+    @await Html.PartialAsync("_Alert")
+}
+<table id="subserviceTable" class="table-custom hover cell-border table-striped text-center">
+    <thead>
+        <tr>
+            <th class="text-center">ID</th>
+            <th class="text-center">Name</th>
+            <th class="text-center">Department</th>
+            <th class="text-center">Description</th>
+            <th class="text-center">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var sub in Model)
+        {
+            <tr>
+                <td>@sub.Id</td>
+                <td>@sub.Name</td>
+                <td>@sub.Department.Name</td>
+                <td>@sub.Description</td>
+                <td>
+                    <div class="d-flex gap-2 justify-content-center">
+                        <button class="btn btn-purple btn-sm edit-subservice-btn"
+                                data-id="@sub.Id"
+                                data-name="@sub.Name"
+                                data-department="@sub.DepartmentId"
+                                data-description="@sub.Description">
+                            <span class="material-symbols-rounded">edit</span>
+                        </button>
+                        <button class="btn btn-red btn-sm delete-subservice-btn" data-id="@sub.Id">
+                            <span class="material-symbols-rounded">delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+        const departments = @Html.Raw(Json.Serialize(ViewBag.Departments));
+    </script>
+    <script src="~/dashboard/js/subservice.js"></script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/dashboard/css/tables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.bootstrap5.min.css" />
+}

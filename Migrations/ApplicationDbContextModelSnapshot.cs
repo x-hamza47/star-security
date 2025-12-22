@@ -207,6 +207,9 @@ namespace Star_Security.Migrations
                     b.Property<int?>("GradeId")
                         .HasColumnType("int");
 
+                    b.Property<int?>("HiredFromVacancyId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
@@ -260,6 +263,8 @@ namespace Star_Security.Migrations
 
                     b.HasIndex("GradeId");
 
+                    b.HasIndex("HiredFromVacancyId");
+
                     b.HasIndex("NormalizedEmail")
                         .HasDatabaseName("EmailIndex");
 
@@ -269,6 +274,199 @@ namespace Star_Security.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
+                });
+
+            modelBuilder.Entity("Star_Security.Models.Branch", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Area")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
+
+                    b.Property<string>("ManagerName")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.Property<int>("RegionId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RegionId");
+
+                    b.ToTable("Branches");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Area = "Downtown",
+                            ContactNumber = "+923001234001",
+                            IsActive = true,
+                            Latitude = 33.684399999999997,
+                            Longitude = 73.047899999999998,
+                            ManagerName = "Ali Khan",
+                            Name = "Maple Street Branch",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Area = "Uptown",
+                            ContactNumber = "+923001234002",
+                            IsActive = true,
+                            Latitude = 33.689999999999998,
+                            Longitude = 73.049999999999997,
+                            ManagerName = "Sara Iqbal",
+                            Name = "Pine Avenue Branch",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Area = "Midtown",
+                            ContactNumber = "+923001234003",
+                            IsActive = true,
+                            Latitude = 33.695,
+                            Longitude = 73.055000000000007,
+                            ManagerName = "Ahmed Raza",
+                            Name = "Cedar Park Branch",
+                            RegionId = 1
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Area = "Industrial Area",
+                            ContactNumber = "+923001234004",
+                            IsActive = true,
+                            Latitude = 24.860700000000001,
+                            Longitude = 67.001099999999994,
+                            ManagerName = "Fatima Noor",
+                            Name = "Riverfront Branch",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Area = "Warehouse District",
+                            ContactNumber = "+923001234005",
+                            IsActive = true,
+                            Latitude = 24.864999999999998,
+                            Longitude = 67.004999999999995,
+                            ManagerName = "Omar Khan",
+                            Name = "Sunset Boulevard Branch",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Area = "Dock Area",
+                            ContactNumber = "+923001234006",
+                            IsActive = true,
+                            Latitude = 24.870000000000001,
+                            Longitude = 67.010000000000005,
+                            ManagerName = "Ayesha Malik",
+                            Name = "Harbor Road Branch",
+                            RegionId = 2
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Area = "Business District",
+                            ContactNumber = "+923001234007",
+                            IsActive = true,
+                            Latitude = 31.520399999999999,
+                            Longitude = 74.358699999999999,
+                            ManagerName = "Bilal Shah",
+                            Name = "Tech Park Branch",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Area = "Startup Area",
+                            ContactNumber = "+923001234008",
+                            IsActive = true,
+                            Latitude = 31.524999999999999,
+                            Longitude = 74.359999999999999,
+                            ManagerName = "Hina Tariq",
+                            Name = "Innovation Hub Branch",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Area = "Tech Center",
+                            ContactNumber = "+923001234009",
+                            IsActive = true,
+                            Latitude = 31.530000000000001,
+                            Longitude = 74.364999999999995,
+                            ManagerName = "Usman Qadir",
+                            Name = "Silicon Avenue Branch",
+                            RegionId = 3
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Area = "Commercial Area",
+                            ContactNumber = "+923001234010",
+                            IsActive = true,
+                            Latitude = 25.396000000000001,
+                            Longitude = 68.357799999999997,
+                            ManagerName = "Laila Ahmed",
+                            Name = "Market Street Branch",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Area = "Residential Area",
+                            ContactNumber = "+923001234011",
+                            IsActive = true,
+                            Latitude = 25.399999999999999,
+                            Longitude = 68.359999999999999,
+                            ManagerName = "Fahad Khan",
+                            Name = "Garden View Branch",
+                            RegionId = 4
+                        },
+                        new
+                        {
+                            Id = 12,
+                            Area = "Shopping Area",
+                            ContactNumber = "+923001234012",
+                            IsActive = true,
+                            Latitude = 25.405000000000001,
+                            Longitude = 68.364999999999995,
+                            ManagerName = "Sana Malik",
+                            Name = "Central Plaza Branch",
+                            RegionId = 4
+                        });
                 });
 
             modelBuilder.Entity("Star_Security.Models.Client", b =>
@@ -296,6 +494,37 @@ namespace Star_Security.Migrations
                     b.ToTable("Clients");
                 });
 
+            modelBuilder.Entity("Star_Security.Models.ClientAssignment", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("AssignedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("ClientId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("EmployeeId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ClientId");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("EmployeeId");
+
+                    b.ToTable("ClientAssignments");
+                });
+
             modelBuilder.Entity("Star_Security.Models.Department", b =>
                 {
                     b.Property<int>("Id")
@@ -306,31 +535,64 @@ namespace Star_Security.Migrations
 
                     b.Property<string>("Code")
                         .IsRequired()
-                        .HasMaxLength(50)
-                        .HasColumnType("nvarchar(50)");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasMaxLength(250)
-                        .HasColumnType("nvarchar(250)");
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Icon")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsActive")
                         .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasMaxLength(100)
-                        .HasColumnType("nvarchar(100)");
-
-                    b.Property<DateTime>("UpdatedAt")
-                        .HasColumnType("datetime2");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
                     b.ToTable("Departments");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Code = "MG",
+                            Description = "Guards, Fire Squad, Dog Squad, Bodyguards",
+                            Icon = "security",
+                            IsActive = true,
+                            Name = "Manned Guarding"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Code = "CS",
+                            Description = "Cash transfer, ATM replenishment, Vaulting & Caretaker",
+                            Icon = "payments",
+                            IsActive = true,
+                            Name = "Cash Services"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Code = "RT",
+                            Description = "Recruit, train, and deploy manpower",
+                            Icon = "people",
+                            IsActive = true,
+                            Name = "Recruitment & Training"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Code = "ESS",
+                            Description = "Access control, CCTV, fire alarms, intruder alarms, perimeter protection",
+                            Icon = "videocam",
+                            IsActive = true,
+                            Name = "Electronic Security Systems"
+                        });
                 });
 
             modelBuilder.Entity("Star_Security.Models.Grade", b =>
@@ -368,6 +630,317 @@ namespace Star_Security.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Grades");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9427),
+                            Description = "Entry-level grade",
+                            IsActive = true,
+                            LevelCode = "JNR",
+                            Name = "Junior",
+                            UpdatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9436)
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9438),
+                            Description = "Intermediate grade",
+                            IsActive = true,
+                            LevelCode = "MID",
+                            Name = "Mid-Level",
+                            UpdatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9439)
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CreatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9440),
+                            Description = "Experienced grade",
+                            IsActive = true,
+                            LevelCode = "SNR",
+                            Name = "Senior",
+                            UpdatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9440)
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CreatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9441),
+                            Description = "Team lead grade",
+                            IsActive = true,
+                            LevelCode = "LD",
+                            Name = "Lead",
+                            UpdatedAt = new DateTime(2025, 12, 22, 0, 54, 39, 191, DateTimeKind.Local).AddTicks(9442)
+                        });
+                });
+
+            modelBuilder.Entity("Star_Security.Models.Region", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Regions");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "North Region"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "West Region"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "East Region"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "South Region"
+                        });
+                });
+
+            modelBuilder.Entity("Star_Security.Models.SubService", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("nvarchar(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.ToTable("SubServices");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DepartmentId = 1,
+                            Description = "Provide security guards for clients",
+                            Name = "Guards"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DepartmentId = 1,
+                            Description = "Specialized fire safety team",
+                            Name = "Fire Squad"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DepartmentId = 1,
+                            Description = "Trained security dogs and handlers",
+                            Name = "Dog Squad"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            DepartmentId = 1,
+                            Description = "Personal protection officers",
+                            Name = "Bodyguards"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            DepartmentId = 2,
+                            Description = "Secure cash transfer services",
+                            Name = "Cash Transfer"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            DepartmentId = 2,
+                            Description = "ATM cash refill and maintenance",
+                            Name = "ATM Replenishment"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            DepartmentId = 2,
+                            Description = "Secure vault and processing operations",
+                            Name = "Vaulting & Processing"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            DepartmentId = 2,
+                            Description = "Management of client cash-related operations",
+                            Name = "Caretaker Services"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            DepartmentId = 3,
+                            Description = "Hiring suitable manpower",
+                            Name = "Recruitment"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            DepartmentId = 3,
+                            Description = "Training personnel to client standards",
+                            Name = "Training"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            DepartmentId = 4,
+                            Description = "Installation and maintenance of access systems",
+                            Name = "Access Control Systems"
+                        },
+                        new
+                        {
+                            Id = 12,
+                            DepartmentId = 4,
+                            Description = "Closed-circuit camera systems",
+                            Name = "CCTV"
+                        },
+                        new
+                        {
+                            Id = 13,
+                            DepartmentId = 4,
+                            Description = "Fire detection and alarm systems",
+                            Name = "Fire Alarm Systems"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            DepartmentId = 4,
+                            Description = "Fire suppression installations",
+                            Name = "Fire Suppression Systems"
+                        },
+                        new
+                        {
+                            Id = 15,
+                            DepartmentId = 4,
+                            Description = "Intruder and burglar alarm systems",
+                            Name = "Intruder/Burglar Alarms"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            DepartmentId = 4,
+                            Description = "Fencing and perimeter security",
+                            Name = "Perimeter Protection Systems"
+                        });
+                });
+
+            modelBuilder.Entity("Star_Security.Models.Vacancy", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("FilledStaff")
+                        .HasColumnType("int");
+
+                    b.Property<int>("GradeId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("RequiredStaff")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("SubServiceId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("GradeId");
+
+                    b.HasIndex("SubServiceId");
+
+                    b.ToTable("Vacancies");
+                });
+
+            modelBuilder.Entity("Star_Security.Models.VacancyApplication", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("AppliedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ContactNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Education")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<int>("VacancyId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VacancyId");
+
+                    b.ToTable("VacancyApplications");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -424,9 +997,8 @@ namespace Star_Security.Migrations
             modelBuilder.Entity("Star_Security.Models.AppUser", b =>
                 {
                     b.HasOne("Star_Security.Models.Client", "Client")
-                        .WithMany("Users")
-                        .HasForeignKey("ClientId")
-                        .OnDelete(DeleteBehavior.SetNull);
+                        .WithMany()
+                        .HasForeignKey("ClientId");
 
                     b.HasOne("Star_Security.Models.Department", "Department")
                         .WithMany("Users")
@@ -438,26 +1010,144 @@ namespace Star_Security.Migrations
                         .HasForeignKey("GradeId")
                         .OnDelete(DeleteBehavior.Restrict);
 
+                    b.HasOne("Star_Security.Models.Vacancy", "HiredFromVacancy")
+                        .WithMany()
+                        .HasForeignKey("HiredFromVacancyId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
                     b.Navigation("Client");
 
                     b.Navigation("Department");
 
                     b.Navigation("Grade");
+
+                    b.Navigation("HiredFromVacancy");
+                });
+
+            modelBuilder.Entity("Star_Security.Models.Branch", b =>
+                {
+                    b.HasOne("Star_Security.Models.Region", "Region")
+                        .WithMany("Branches")
+                        .HasForeignKey("RegionId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Region");
+                });
+
+            modelBuilder.Entity("Star_Security.Models.ClientAssignment", b =>
+                {
+                    b.HasOne("Star_Security.Models.Client", "Client")
+                        .WithMany("ClientAssignments")
+                        .HasForeignKey("ClientId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Star_Security.Models.Department", "Department")
+                        .WithMany("ClientAssignments")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Star_Security.Models.AppUser", "Employee")
+                        .WithMany("ClientAssignments")
+                        .HasForeignKey("EmployeeId")
+                        .OnDelete(DeleteBehavior.SetNull);
+
+                    b.Navigation("Client");
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Employee");
+                });
+
+            modelBuilder.Entity("Star_Security.Models.SubService", b =>
+                {
+                    b.HasOne("Star_Security.Models.Department", "Department")
+                        .WithMany("SubServices")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("Star_Security.Models.Vacancy", b =>
+                {
+                    b.HasOne("Star_Security.Models.Department", "Department")
+                        .WithMany("Vacancies")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Star_Security.Models.Grade", "Grade")
+                        .WithMany()
+                        .HasForeignKey("GradeId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("Star_Security.Models.SubService", "SubService")
+                        .WithMany("Vacancies")
+                        .HasForeignKey("SubServiceId")
+                        .OnDelete(DeleteBehavior.Restrict);
+
+                    b.Navigation("Department");
+
+                    b.Navigation("Grade");
+
+                    b.Navigation("SubService");
+                });
+
+            modelBuilder.Entity("Star_Security.Models.VacancyApplication", b =>
+                {
+                    b.HasOne("Star_Security.Models.Vacancy", "Vacancy")
+                        .WithMany("Applications")
+                        .HasForeignKey("VacancyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Vacancy");
+                });
+
+            modelBuilder.Entity("Star_Security.Models.AppUser", b =>
+                {
+                    b.Navigation("ClientAssignments");
                 });
 
             modelBuilder.Entity("Star_Security.Models.Client", b =>
                 {
-                    b.Navigation("Users");
+                    b.Navigation("ClientAssignments");
                 });
 
             modelBuilder.Entity("Star_Security.Models.Department", b =>
                 {
+                    b.Navigation("ClientAssignments");
+
+                    b.Navigation("SubServices");
+
                     b.Navigation("Users");
+
+                    b.Navigation("Vacancies");
                 });
 
             modelBuilder.Entity("Star_Security.Models.Grade", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("Star_Security.Models.Region", b =>
+                {
+                    b.Navigation("Branches");
+                });
+
+            modelBuilder.Entity("Star_Security.Models.SubService", b =>
+                {
+                    b.Navigation("Vacancies");
+                });
+
+            modelBuilder.Entity("Star_Security.Models.Vacancy", b =>
+                {
+                    b.Navigation("Applications");
                 });
 #pragma warning restore 612, 618
         }

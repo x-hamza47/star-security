@@ -23,6 +23,7 @@
         const id = button.data('id');
         const name = button.data('name');
         const code = button.data('code');
+        const icon = button.data('icon');
         const description = button.data('description');
         const isActive = button.data('active');
 
@@ -42,6 +43,13 @@
                         <label for="deptCode">Department Code</label>
                         <div class="input-wrap">
                             <input id="deptCode" type="text" value="${code}" placeholder="HR / IT / FIN" />
+                            <span class="material-symbols-rounded">badge</span>
+                        </div>
+                    </div>
+                    <div class="inp-bx">
+                        <label for="deptIcon">Department Icon</label>
+                        <div class="input-wrap">
+                            <input id="deptIcon" type="text" value="${icon}" placeholder="google icons" />
                             <span class="material-symbols-rounded">badge</span>
                         </div>
                     </div>
@@ -74,6 +82,7 @@
                 id: id,
                 name: document.getElementById('deptName').value,
                 code: document.getElementById('deptCode').value,
+                icon: document.getElementById('deptIcon').value,
                 description: document.getElementById('deptDescription').value,
                 isActive: document.getElementById('deptStatus').checked
             })

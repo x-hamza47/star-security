@@ -1,0 +1,96 @@
+﻿@model Star_Security.ViewModels.BranchCreateVM
+
+<div class="wrapper">
+    @if (TempData["ValidationErrors"] != null)
+    {
+        <div class="alert alert-danger">
+            @TempData["ValidationErrors"]
+        </div>
+    }
+    <form asp-action="Add" method="post" class="d-flex flex-column gap-3">
+        <div>
+            <h1>Add Branch</h1>
+        </div>
+        <div class="inp-fields">
+
+            <!-- Branch Name -->
+            <div class="inp-bx full-width">
+                <label for="name">Branch Name</label>
+                <div class="input-wrap">
+                    <input id="name" type="text" asp-for="Name" placeholder="Branch Name" />
+                    <span class="material-symbols-rounded">apartment</span>
+                    <span asp-validation-for="Name" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Region Dropdown -->
+            <div class="inp-bx">
+                <label for="region">Region</label>
+                <div class="input-wrap">
+                    <select id="region" asp-for="RegionId" asp-items="Model.Regions">
+                        <option value="">-- Select Region --</option>
+                    </select>
+                    <span asp-validation-for="RegionId" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Manager Name -->
+            <div class="inp-bx">
+                <label for="manager">Manager Name</label>
+                <div class="input-wrap">
+                    <input id="manager" type="text" asp-for="ManagerName" placeholder="Manager Name" />
+                    <span class="material-symbols-rounded">person</span>
+                    <span asp-validation-for="ManagerName" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Contact Number -->
+            <div class="inp-bx">
+                <label for="contactNumber">Contact Number</label>
+                <div class="input-wrap">
+                    <input id="contactNumber" type="text" asp-for="ContactNumber" placeholder="+923001234567" />
+                    <span class="material-symbols-rounded">phone</span>
+                    <span asp-validation-for="ContactNumber" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Area -->
+            <div class="inp-bx full-width">
+                <label for="area">Area</label>
+                <div class="input-wrap">
+                    <input id="area" type="text" asp-for="Area" placeholder="Branch Area" />
+                    <span class="material-symbols-rounded">home</span>
+                    <span asp-validation-for="Area" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <!-- Latitude & Longitude -->
+            <div class="inp-bx">
+                <label for="latitude">Latitude</label>
+                <div class="input-wrap">
+                    <input id="latitude" type="number" step="any" asp-for="Latitude" placeholder="Latitude" />
+                    <span class="material-symbols-rounded">explore</span>
+                    <span asp-validation-for="Latitude" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+            <div class="inp-bx">
+                <label for="longitude">Longitude</label>
+                <div class="input-wrap">
+                    <input id="longitude" type="number" step="any" asp-for="Longitude" placeholder="Longitude" />
+                    <span class="material-symbols-rounded">explore</span>
+                    <span asp-validation-for="Longitude" class="text-danger validation-span"></span>
+                </div>
+            </div>
+
+        </div>
+            <!-- Is Active -->
+            <div class="form-check form-switch mt-4">
+                <input class="form-check-input py-2 px-3 mt-0 me-1" type="checkbox" id="isActive" asp-for="IsActive" checked>
+                <label class="form-check-label user-select-none" for="isActive">Active</label>
+            </div>
+
+
+        <button type="submit" class="btn add-btn mt-3">Add Branch</button>
+    </form>
+</div>
