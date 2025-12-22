@@ -1,0 +1,160 @@
+﻿@model List<Star_Security.Models.VacancyApplication>
+@section AlertsSection {
+    @await Html.PartialAsync("_Alert")
+}
+
+<table id="vacancyTable" class="table-custom hover cell-border table-striped text-center">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Contact</th>
+            <th>Vacancy</th>
+            <th>Status</th>
+            <th>Applied At</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+         @foreach (var app in Model)
+        {
+            <tr>
+                <td>@app.Id</td>
+                <td>@app.FullName</td>
+                <td>@app.Email</td>
+                <td>@app.ContactNumber</td>
+                <td>@app.Vacancy?.SubService?.Name ?? "N/A"</td>
+                <td>@app.Status</td>
+                <td>@app.AppliedAt.ToString("dd MMM yyyy HH:mm")</td>
+                <td>
+                    @if (app.Status == Star_Security.Models.ApplicationStatus.Pending)
+                    {
+                        <button class="btn btn-success btn-sm approve-app-btn" data-id="@app.Id">Approve</button>
+                        <button class="btn btn-warning btn-sm reject-app-btn" data-id="@app.Id">Reject</button>
+                    }
+ 
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
+    <script src="https://cdn.datatables.net/2.3.5/js/dataTables.bootstrap5.min.js"></script>
+    <script>
+            $(document).ready(function () {
+
+        $("#vacancyTable").DataTable({
+            pagingType: "full_numbers",
+            pageLength: 10,
+            lengthMenu: [5, 10, 25],
+            order: [[0, "asc"]],
+            language: {
+                search: '_INPUT_',
+                searchPlaceholder: 'Search records...'
+            }
+        });
+
+        // Approve application
+        $(document).on('click', '.approve-app-btn', function () {
+            const id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Approve Application?',
+                text: "This will assign the employee role and send credentials!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Approve',
+                cancelButtonText: 'Cancel',
+                background: 'rgba(113, 43, 241, 0.24)',
+                color: '#fff',
+                backdrop: 'blur(20px)',
+                customClass: { confirmButton: 'btn-success', cancelButton: 'btn-cancel', popup: 'edit-modal' }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/VacancyApp/Approve',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (res) {
+                            if (res.success) {
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: res.message,
+                                    showConfirmButton: false,
+                                    timer: 2000,
+                                    background: 'rgba(255, 255, 255, 0.2)',
+                                    backdrop: 'blur(20px)',
+                                    color: '#fff'
+                                }).then(() => location.reload());
+                            } else {
+                                Swal.fire('Error', res.message, 'error');
+                            }
+                        },
+                        error: function (xhr) {
+                            Swal.fire('Error', xhr.responseText, 'error');
+                        }
+                    });
+                }
+            });
+        });
+
+        // Reject application
+        $(document).on('click', '.reject-app-btn', function () {
+            const id = $(this).data('id');
+
+            Swal.fire({
+                title: 'Reject Application?',
+                text: "This will mark the application as rejected.",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonText: 'Yes, Reject',
+                cancelButtonText: 'Cancel',
+                background: 'rgba(113, 43, 241, 0.24)',
+                color: '#fff',
+                backdrop: 'blur(20px)',
+                customClass: { confirmButton: 'btn-warning', cancelButton: 'btn-cancel', popup: 'edit-modal' }
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    $.ajax({
+                        url: '/VacancyApp/Reject',
+                        type: 'POST',
+                        data: { id: id },
+                        success: function (res) {
+                            if (res.success) {
+                                Swal.fire({
+                                    toast: true,
+                                    position: 'top-end',
+                                    icon: 'success',
+                                    title: res.message,
+                                    showConfirmButton: false,
+                                    timer: 2000,
+                                    background: 'rgba(255, 255, 255, 0.2)',
+                                    backdrop: 'blur(20px)',
+                                    color: '#fff'
+                                }).then(() => location.reload());
+                            } else {
+                                Swal.fire('Error', res.message, 'error');
+                            }
+                        },
+                        error: function (xhr) {
+                            Swal.fire('Error', xhr.responseText, 'error');
+                        }
+                    });
+                }
+            });
+        });
+        });
+    </script>
+    
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/dashboard/css/tables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.dataTables.css" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.3.5/css/dataTables.bootstrap5.min.css" />
+}

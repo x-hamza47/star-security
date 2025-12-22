@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
+using System.ComponentModel.DataAnnotations;
 
 namespace Star_Security.Models
 {
@@ -6,7 +7,6 @@ namespace Star_Security.Models
     {
         public int Id { get; set; }
 
-        [Required]
         public int VacancyId { get; set; }
         public Vacancy Vacancy { get; set; }
 
@@ -18,7 +18,9 @@ namespace Star_Security.Models
         public string Education { get; set; }
         public string Address { get; set; }
 
+        [ValidateNever]
         public ApplicationStatus Status { get; set; } = ApplicationStatus.Pending;
+        [ValidateNever]
         public DateTime AppliedAt { get; set; } = DateTime.Now;
     }
 

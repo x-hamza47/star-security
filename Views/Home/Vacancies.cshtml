@@ -1,0 +1,135 @@
+﻿@section AlertsSection {
+    @await Html.PartialAsync("_Alert")
+}
+@{
+    Layout = "_FrontLayout";
+}
+@model List<Star_Security.Models.Vacancy>
+
+<section class="vacancy-section py-5 mt-5">
+    <div class="container">
+        <div class="text-center mb-5">
+            <h2>Current Vacancies</h2>
+            <p>Apply for open positions at Star Security</p>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var v in Model)
+            {
+                var seatsLeft = v.RequiredStaff - v.FilledStaff;
+                var expired = DateTime.Now > v.LastDate;
+
+                <div class="col-md-6 col-lg-4">
+                    <div class="vacancy-card d-flex flex-column">
+                        <div class="card-body d-flex flex-column">
+
+                            <h5>@v.Title</h5>
+                            <div class="vacancy-meta">
+                                <p><strong>Department:</strong> @v.Department.Name</p>
+
+                                @if (v.SubService != null)
+                                {
+                                    <p><strong>Service:</strong> @v.SubService.Name</p>
+                                }
+
+                                <p><strong>Grade:</strong> @v.Grade.Name</p>
+
+                                <p>
+                                    <span class="seats-badge">
+                                        Seats: @seatsLeft / @v.RequiredStaff
+                                    </span>
+                                </p>
+
+                                <p class="text-muted">
+                                    Last Date: @v.LastDate.ToString("dd MMM yyyy")
+                                </p>
+                            </div>
+
+                            @if (!expired && seatsLeft > 0)
+                            {
+                                <button class="apply-btn mt-auto apply-btn"
+                                        data-bs-toggle="modal"
+                                        data-bs-target="#applyModal"
+                                        data-id="@v.Id"
+                                        data-title="@v.Title">
+                                    Apply Now
+                                </button>
+                            }
+                            else
+                            {
+                                <div class="closed-badge mt-auto">
+                                    Closed
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</section>
+
+<div class="modal fade" id="applyModal" tabindex="-1">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Apply for Vacancy</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+
+            <form method="post"  asp-controller="Home" asp-action="ApplyVacancy">
+                <div class="modal-body">
+                    <input type="hidden" name="VacancyId" id="VacancyId" />
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label">Full Name</label>
+                            <input name="FullName" class="form-control"  />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Contact Number</label>
+                            <input name="ContactNumber" class="form-control"  />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Email</label>
+                            <input type="email" name="Email" class="form-control"  />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label class="form-label">Education</label>
+                            <input name="Education" class="form-control" />
+                        </div>
+
+                        <div class="col-12">
+                            <label class="form-label">Address</label>
+                            <textarea name="Address" class="form-control" rows="3"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+            document.querySelectorAll(".apply-btn").forEach(btn => {
+            btn.addEventListener("click", () => {
+                document.getElementById("VacancyId").value = btn.dataset.id;
+                document.querySelector("#applyModal .modal-title").innerText =
+                    "Apply for: " + btn.dataset.title;
+            });
+        });
+    </script>
+}
+
+@section Styles {
+    <link rel="stylesheet" href="~/css/vacancies.css" />
+}
