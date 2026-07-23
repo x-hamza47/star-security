@@ -1,5 +1,5 @@
 .wrapper {
-    background: rgba(113, 43, 241, 0.24);
+    background: rgba(113, 43, 241, 0.3);
     position: relative;
     color: #fff;
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -17,17 +17,17 @@
 
 }
 
-.profile-content{
-    display:flex;
-    align-items:center;
-    gap:10px;
+.profile-content {
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
+
     .profile-content .user-details span p {
         color: var(--color-text-muted);
         display: flex;
         align-items: flex-end;
         gap: 4px;
-
     }
 
 .profile-wrapper {
@@ -82,6 +82,7 @@
     .btn-update:hover {
         background: linear-gradient(190deg, #8847ff, #160163);
     }
+
 .btn-delete {
     background: linear-gradient(190deg, #ff4b5c, #d90429);
     color: #fff;
@@ -140,7 +141,7 @@
     /* height: 50px; */
     display: flex;
     flex-direction: column;
-
+    gap: 5px;
     & > span:first-of-type
 
 {
@@ -163,12 +164,18 @@ input, textarea {
     font-size: 14px;
     color: #fff;
     /* padding: 10px 20px ; */
-    padding: 10px 45px 10px 10px;
+    padding: 10px 45px 10px 20px;
     transition: all 0.2s ease-in-out;
     &:focus
 
 {
     border-color: rgba(255, 255, 255, 0.8);
+    & ~ .material-symbols-rounded
+
+{
+    color: rgba(255, 255, 255, 0.8);
+}
+
 }
 
 &::placeholder {
@@ -199,12 +206,13 @@ input, textarea {
         top: 50%;
         right: 15px;
         transform: translateY(-50%);
-        color: #ccc;
+        color: rgba(255, 255, 255, 0.2);
         pointer-events: none;
+        transition: all .3s ease;
     }
 
 .inp-bx select {
-    width:100%;
+    width: 100%;
     height: 100%;
     background: transparent;
     border: 2px solid rgba(255, 255, 255, 0.2);
@@ -212,17 +220,18 @@ input, textarea {
     color: #fff;
     padding: 10px 20px;
     outline: none;
-    font-size:14px;
+    font-size: 14px;
 }
 
 input[readonly] {
-    border: 2px solid #555; 
-    color: #555; 
-    cursor: not-allowed; 
+    border: 2px solid #555;
+    color: #555;
+    cursor: not-allowed;
+    &:focus
 
-    &:focus{
-               border-color:#555;
-           }
+{
+    border-color: #555;
+}
 
 }
 
@@ -230,6 +239,7 @@ input[readonly] {
     background: #2c033f;
     color: #fff;
 }
+
 .inp-bx select option:first-child {
     background: #1b1b1b;
     color: #fff;
@@ -258,9 +268,11 @@ input:-webkit-autofill:focus {
     left: 0;
     font-size: 12px;
 }
-.validation-summary-errors ul{
-    margin-bottom:0 !important;
+
+.validation-summary-errors ul {
+    margin-bottom: 0 !important;
 }
+
 .glass-toast {
     border-radius: 12px;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -290,8 +302,9 @@ input:-webkit-autofill:focus {
     border: 1px solid rgba(255, 255, 255, 0.2);
     box-shadow: 0 4px 20px rgba(0,0,0,0.2);
     backdrop-filter: blur(10px);
+    label
 
-    label{
-             font-size:12px;
-         }
+{
+    font-size: 12px;
+}
 }

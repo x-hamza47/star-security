@@ -43,30 +43,31 @@ namespace Star_Security.Controllers
                   Name = u.Name,
                   Email = u.Email,
                   Contact = u.Contact,
-
+                  ProfileImage = string.IsNullOrEmpty(u.ProfileImage)
+                                       ? "https://upload.wikimedia.org/wikipedia/commons/7/7c/Profile_avatar_placeholder_large.png"
+                                       : u.ProfileImage,
                   DepartmentId = u.DepartmentId,
                   Department = u.Department != null ? u.Department.Name : "",
-
                   GradeId = u.GradeId,
                   Grade = u.Grade != null ? u.Grade.Name : "",
-
                   ClientId = u.ClientId,
-                  Client = u.Client != null ? u.Client.Name : "",
-
+                  Client = u.Client != null ? u.Client.Name : "N/A",
                   Achievements = u.Achievements,
                   CreatedAt = u.CreatedAt
               })
           .ToList();
+            if (User.IsInRole("Admin"))
+            {
+                ViewBag.Departments = context.Departments
+                    .Where(d => d.IsActive)
+                    .Select(d => new { d.Id, d.Name })
+                    .ToList();
 
-            ViewBag.Departments = context.Departments
-                .Where(d => d.IsActive)
-                .Select(d => new { d.Id, d.Name })
-                .ToList();
-
-            ViewBag.Grades = context.Grades
-                .Where(g => g.IsActive)
-                .Select(g => new { g.Id, g.Name })
-                .ToList();
+                ViewBag.Grades = context.Grades
+                    .Where(g => g.IsActive)
+                    .Select(g => new { g.Id, g.Name })
+                    .ToList();
+            }
 
             return View(employees);
         }

@@ -26,8 +26,6 @@
         const email = button.data('email');
         const departmentId = button.data('departmentid');
         const gradeId = button.data('gradeid');
-        const client = button.data('client');
-
 
         let deptOptions = departments.map(d =>
             `<option value="${d.id}" ${d.id === departmentId ? 'selected' : ''}>${d.name}</option>`
@@ -78,14 +76,6 @@
                 <select id="empGrade">${gradeOptions}</select>
             </div>
 
-                <div class="inp-bx">
-                    <label for="empClient">Client</label>
-                    <div class="input-wrap">
-                        <input id="empClient" type="text" value="${client}" placeholder="Client Name" />
-                        <span class="material-symbols-rounded">business</span>
-                    </div>
-                </div>
-
             </div>
         `,
             focusConfirm: false,
@@ -106,7 +96,6 @@
                 email: document.getElementById('empEmail').value,
                 departmentId: document.getElementById('empDepartment').value,
                 gradeId: document.getElementById('empGrade').value,
-                client: document.getElementById('empClient').value
             })
         }).then((result) => {
             if (result.isConfirmed) updateEmployee(result.value);

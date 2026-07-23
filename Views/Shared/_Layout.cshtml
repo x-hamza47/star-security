@@ -1,4 +1,5 @@
-﻿<!DOCTYPE html>
+﻿@using Star_Security.Helpers;
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -27,7 +28,7 @@
         <div class="header-right">
             <div class="search-bar">
                 <span class="material-symbols-rounded icon"> search </span>
-                <input type="search" placeholder="Search..." class="text-white"/>
+                <input type="search" placeholder="Search..." class="text-white" />
             </div>
             <button class="header-button">
                 <span class="material-symbols-rounded"> settings </span>
@@ -41,11 +42,12 @@
             </button>
         </div>
     </header>
+
     <aside class="sidebar">
         <!-- Sidebar Header -->
         <header class="sidebar-header">
             <a href="#" class="header-logo">
-                <img src="" alt="Logo" />
+                <img src="~/images/star-security-logo.png" alt="Logo" />
             </a>
             <button class="sidebar-toggler">
                 <span class="material-symbols-rounded"> chevron_left </span>
@@ -55,7 +57,7 @@
         <nav class="sidebar-nav">
             <!-- Top Nav -->
             <ul class="nav-list primary-nav">
-                <li class="nav-item">
+                <li class="nav-item @(NavHelper.IsRoute(ViewContext, "Dashboard", "Index") ? "active" : "")">
                     <a asp-controller="Dashboard" asp-action="Index" class="nav-link">
                         <span class="material-symbols-rounded"> dashboard </span>
                         <span class="nav-label">Dashboard</span>
@@ -66,192 +68,236 @@
                         </li>
                     </ul>
                 </li>
-                <!-- Dropdown -->
-                <li class="nav-item drop-container">
-                    <a href="#" class="nav-link drop-toggle">
-                        <span class="material-symbols-rounded"> group </span>
-                        <span class="nav-label">Manage Employees</span>
-                        <span class="material-symbols-rounded drop-icon">
-                            keyboard_arrow_down
-                        </span>
-                    </a>
-                    <!-- Dropdown Menu -->
-                    <ul class="drop-menu">
-                        <li class="nav-item">
-                            <a class="nav-link drop-title">Manage Employees</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="Employee" asp-action="Index" class="nav-link drop-link">All Employees</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="Employee" asp-action="Create" class="nav-link drop-link">Add Employee</a>
-                        </li>
-                    </ul>
-                </li>
-                <!--Departments Dropdown -->
-                <li class="nav-item drop-container">
-                    <a href="#" class="nav-link drop-toggle">
-                        <span class="material-symbols-rounded"> apartment </span>
-                        <span class="nav-label">Manage Department</span>
-                        <span class="material-symbols-rounded drop-icon">
-                            keyboard_arrow_down
-                        </span>
-                    </a>
-                    <!-- Dropdown Menu -->
-                    <ul class="drop-menu">
-                        <li class="nav-item">
-                            <a class="nav-link drop-title">Manage Department</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="Department" asp-action="Index" class="nav-link drop-link">All Departments</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="Department" asp-action="Add" class="nav-link drop-link">Add Department</a>
-                        </li>
-                    </ul>
-                </li>
-                <!--Service Dropdown -->
-                <li class="nav-item drop-container">
-                    <a href="#" class="nav-link drop-toggle">
-                        <span class="material-symbols-rounded"> build_circle </span>
-                        <span class="nav-label">Manage Service</span>
-                        <span class="material-symbols-rounded drop-icon">
-                            keyboard_arrow_down
-                        </span>
-                    </a>
-                    <!-- Dropdown Menu -->
-                    <ul class="drop-menu">
-                        <li class="nav-item">
-                            <a class="nav-link drop-title">Manage Service</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="SubService" asp-action="Index" class="nav-link drop-link">All Services</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="SubService" asp-action="Add" class="nav-link drop-link">Add Service</a>
-                        </li>
-                    </ul>
-                </li>
-                <!--Branch Dropdown -->
-                <li class="nav-item drop-container">
-                    <a href="#" class="nav-link drop-toggle">
-                        <span class="material-symbols-rounded"> location_city </span>
-                        <span class="nav-label">Manage Branch</span>
-                        <span class="material-symbols-rounded drop-icon">
-                            keyboard_arrow_down
-                        </span>
-                    </a>
-                    <!-- Dropdown Menu -->
-                    <ul class="drop-menu">
-                        <li class="nav-item">
-                            <a class="nav-link drop-title">Manage Branch</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="Branch" asp-action="Index" class="nav-link drop-link">All Branch</a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="Branch" asp-action="Add" class="nav-link drop-link">Add Branch</a>
-                        </li>
-                    </ul>
-                </li>
-                <!-- Grades Dropdown -->
-                <li class="nav-item drop-container">
-                    <a href="#" class="nav-link drop-toggle">
-                        <span class="material-symbols-rounded"> military_tech </span>
-                        <span class="nav-label">Manage Grades</span>
-                        <span class="material-symbols-rounded drop-icon">
-                            keyboard_arrow_down
-                        </span>
-                    </a>
+                @if (User.IsInRole("Admin"))
+                {
+                    <!-- Dropdown -->
+                    <li class="nav-item drop-container @(NavHelper.IsAnyRoute(ViewContext,
+                                ("Employee", "Index"),
+                                ("Employee", "Create")
+                            ) ? "open active" : "")">
+                        <a href="#" class="nav-link drop-toggle">
+                            <span class="material-symbols-rounded"> group </span>
+                            <span class="nav-label">Manage Employees</span>
+                            <span class="material-symbols-rounded drop-icon">
+                                keyboard_arrow_down
+                            </span>
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <ul class="drop-menu">
+                            <li class="nav-item">
+                                <a class="nav-link drop-title">Manage Employees</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Employee" asp-action="Index" class="nav-link drop-link">All Employees</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Employee" asp-action="Create" class="nav-link drop-link">Add Employee</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Departments Dropdown -->
+                <li class="nav-item drop-container  @(NavHelper.IsAnyRoute(ViewContext,
+                                                                        ("Department", "Index"),
+                                                                                            ("Department", "Add")
+                                                ) ? "open active" : "")">
+                        <a href="#" class="nav-link drop-toggle">
+                            <span class="material-symbols-rounded"> apartment </span>
+                            <span class="nav-label">Manage Department</span>
+                            <span class="material-symbols-rounded drop-icon">
+                                keyboard_arrow_down
+                            </span>
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <ul class="drop-menu">
+                            <li class="nav-item">
+                                <a class="nav-link drop-title">Manage Department</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Department" asp-action="Index" class="nav-link drop-link">All Departments</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Department" asp-action="Add" class="nav-link drop-link">Add Department</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Service Dropdown -->
+                <li class="nav-item drop-container  @(NavHelper.IsAnyRoute(ViewContext,
+                                                                        ("SubService", "Index"),
+                                                                                            ("SubService", "Add")
+                                                ) ? "open active" : "")">
+                        <a href="#" class="nav-link drop-toggle">
+                            <span class="material-symbols-rounded"> build_circle </span>
+                            <span class="nav-label">Manage Service</span>
+                            <span class="material-symbols-rounded drop-icon">
+                                keyboard_arrow_down
+                            </span>
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <ul class="drop-menu">
+                            <li class="nav-item">
+                                <a class="nav-link drop-title">Manage Service</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="SubService" asp-action="Index" class="nav-link drop-link">All Services</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="SubService" asp-action="Add" class="nav-link drop-link">Add Service</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!--Branch Dropdown -->
+                <li class="nav-item drop-container  @(NavHelper.IsAnyRoute(ViewContext,
+                                                    ("Branch", "Index"),("Branch", "Add")
+                                                ) ? "open active" : "")">
+                        <a href="#" class="nav-link drop-toggle">
+                            <span class="material-symbols-rounded"> location_city </span>
+                            <span class="nav-label">Manage Branch</span>
+                            <span class="material-symbols-rounded drop-icon">
+                                keyboard_arrow_down
+                            </span>
+                        </a>
+                        <!-- Dropdown Menu -->
+                        <ul class="drop-menu">
+                            <li class="nav-item">
+                                <a class="nav-link drop-title">Manage Branch</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Branch" asp-action="Index" class="nav-link drop-link">All Branch</a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="Branch" asp-action="Add" class="nav-link drop-link">Add Branch</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Grades Dropdown -->
+                <li class="nav-item drop-container  @(NavHelper.IsAnyRoute(ViewContext,
+                                                                        ("Grade", "Index"),
+                                                                                            ("Grade", "Add")
+                                                ) ? "open active" : "")">
+                        <a href="#" class="nav-link drop-toggle">
+                            <span class="material-symbols-rounded"> military_tech </span>
+                            <span class="nav-label">Manage Grades</span>
+                            <span class="material-symbols-rounded drop-icon">
+                                keyboard_arrow_down
+                            </span>
+                        </a>
 
-                    <!-- Dropdown Menu -->
-                    <ul class="drop-menu">
-                        <li class="nav-item">
-                            <a class="nav-link drop-title">Manage Grades</a>
-                        </li>
+                        <!-- Dropdown Menu -->
+                        <ul class="drop-menu">
+                            <li class="nav-item">
+                                <a class="nav-link drop-title">Manage Grades</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a asp-controller="Grade" asp-action="Index"
-                               class="nav-link drop-link">
-                                All Grades
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a asp-controller="Grade" asp-action="Index"
+                                   class="nav-link drop-link">
+                                    All Grades
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a asp-controller="Grade" asp-action="Add"
-                               class="nav-link drop-link">
-                                Add Grade
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                            <li class="nav-item">
+                                <a asp-controller="Grade" asp-action="Add"
+                                   class="nav-link drop-link">
+                                    Add Grade
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-                <li class="nav-item drop-container">
-                    <a href="#" class="nav-link drop-toggle">
-                        <span class="material-symbols-rounded"> people </span>
-                        <span class="nav-label">Manage Clients</span>
-                        <span class="material-symbols-rounded drop-icon">
-                            keyboard_arrow_down
-                        </span>
-                    </a>
+                    <li class="nav-item drop-container  @(NavHelper.IsAnyRoute(ViewContext,("Client", "Index"),("Client", "Add")
+                                                ) ? "open active" : "")">
+                        <a href="#" class="nav-link drop-toggle">
+                            <span class="material-symbols-rounded"> people </span>
+                            <span class="nav-label">Manage Clients</span>
+                            <span class="material-symbols-rounded drop-icon">
+                                keyboard_arrow_down
+                            </span>
+                        </a>
 
-                    <!-- Dropdown Menu -->
-                    <ul class="drop-menu">
-                        <li class="nav-item">
-                            <a class="nav-link drop-title">Manage Clients</a>
-                        </li>
+                        <!-- Dropdown Menu -->
+                        <ul class="drop-menu">
+                            <li class="nav-item">
+                                <a class="nav-link drop-title">Manage Clients</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a asp-controller="Client" asp-action="Index"
-                               class="nav-link drop-link">
-                                All Clients
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a asp-controller="Client" asp-action="Index"
+                                   class="nav-link drop-link">
+                                    All Clients
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a asp-controller="Client" asp-action="Add"
-                               class="nav-link drop-link">
-                                Add Client
-                            </a>
-                        </li>
-                    </ul>
-                </li>
-                <li class="nav-item drop-container">
-                    <a href="#" class="nav-link drop-toggle">
-                        <span class="material-symbols-rounded"> work_outline </span>
-                        <span class="nav-label">Manage Vacancy</span>
-                        <span class="material-symbols-rounded drop-icon">
-                            keyboard_arrow_down
-                        </span>
-                    </a>
+                            <li class="nav-item">
+                                <a asp-controller="Client" asp-action="Add"
+                                   class="nav-link drop-link">
+                                    Add Client
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
 
-                    <!-- Dropdown Menu -->
-                    <ul class="drop-menu">
-                        <li class="nav-item">
-                            <a class="nav-link drop-title">Manage Vacancy</a>
-                        </li>
+                    <li class="nav-item drop-container  @(NavHelper.IsAnyRoute(ViewContext,
+                                                       ("Vacancy", "Index"),("Vacancy", "Add"),("VacancyApp", "Add")
+                                                ) ? "open active" : "")">
+                        <a href="#" class="nav-link drop-toggle">
+                            <span class="material-symbols-rounded"> work_outline </span>
+                            <span class="nav-label">Manage Vacancy</span>
+                            <span class="material-symbols-rounded drop-icon">
+                                keyboard_arrow_down
+                            </span>
+                        </a>
 
-                        <li class="nav-item">
-                            <a asp-controller="Vacancy" asp-action="Index"
-                               class="nav-link drop-link">
-                                All Vacancies
-                            </a>
-                        </li>
+                        <!-- Dropdown Menu -->
+                        <ul class="drop-menu">
+                            <li class="nav-item">
+                                <a class="nav-link drop-title">Manage Vacancy</a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a asp-controller="Vacancy" asp-action="Add"
-                               class="nav-link drop-link">
-                                Add Vacancy
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a asp-controller="VacancyApp" asp-action="Index"
-                               class="nav-link drop-link">
-                                Requests
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+                            <li class="nav-item">
+                                <a asp-controller="Vacancy" asp-action="Index"
+                                   class="nav-link drop-link">
+                                    All Vacancies
+                                </a>
+                            </li>
+
+                            <li class="nav-item">
+                                <a asp-controller="Vacancy" asp-action="Add"
+                                   class="nav-link drop-link">
+                                    Add Vacancy
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a asp-controller="VacancyApp" asp-action="Index"
+                                   class="nav-link drop-link">
+                                    Requests
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                }
+                else if (User.IsInRole("Staff"))
+                {
+                    <li class="nav-item  @(NavHelper.IsRoute(ViewContext, "Employee", "Index") ? "active" : "")">
+                        <a asp-controller="Employee" asp-action="Index" class="nav-link">
+                            <span class="material-symbols-rounded"> group </span>
+                            <span class="nav-label">Employees</span>
+                        </a>
+                        <ul class="drop-menu">
+                            <li class="nav-item">
+                                <a class="nav-link drop-title">Employees</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <!-- Only All Vacancies -->
+                    <li class="nav-item  @(NavHelper.IsRoute(ViewContext, "Vacancy", "Index") ? "active" : "")">
+                        <a asp-controller="Vacancy" asp-action="Index" class="nav-link">
+                            <span class="material-symbols-rounded"> work_outline </span>
+                            <span class="nav-label">Vacancies</span>
+                        </a>
+                    </li>
+                }
+
+
                 @* <li class="nav-item">
                     <a href="#" class="nav-link">
                         <span class="material-symbols-rounded"> notifications </span>
@@ -304,10 +350,10 @@
         </nav>
     </aside>
     @* <div class="container"> *@
-        <main role="main" class="main-wrapper">
-            @RenderBody()
+    <main role="main" class="main-wrapper">
+        @RenderBody()
         @RenderSection("AlertsSection", required: false)
-        </main>
+    </main>
     @* </div> *@
 
     <!-- Apexcharts Cdn -->

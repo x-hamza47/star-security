@@ -1,5 +1,5 @@
 const toggleDropdown = (dropdown, menu, isOpen) => {
-  dropdown.classList.toggle("open", isOpen);
+    dropdown.classList.toggle("open", isOpen);
   menu.style.height = isOpen ? `${menu.scrollHeight}px` : 0;
 };
 
@@ -24,6 +24,12 @@ document.querySelectorAll(".drop-toggle").forEach((dropToggle) => {
     closeAllDropdowns();
     toggleDropdown(dropdown, menu, !isOpen);
   });
+});
+
+// Initialize already open dropdowns
+document.querySelectorAll(".drop-container.open").forEach((dropdown) => {
+    const menu = dropdown.querySelector(".drop-menu");
+    menu.style.height = `${menu.scrollHeight}px`;
 });
 
 document.querySelectorAll(".sidebar-toggler,.header-left .header-button")

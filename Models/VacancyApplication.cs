@@ -10,10 +10,12 @@ namespace Star_Security.Models
         public int VacancyId { get; set; }
         public Vacancy Vacancy { get; set; }
 
-
-        [Required] public string FullName { get; set; }
-        [Required] public string ContactNumber { get; set; }
-        [Required, EmailAddress] public string Email { get; set; }
+        [Required] 
+        public string FullName { get; set; }
+        [Required] 
+        public string ContactNumber { get; set; }
+        [Required, EmailAddress] 
+        public string Email { get; set; }
 
         public string Education { get; set; }
         public string Address { get; set; }

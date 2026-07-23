@@ -155,10 +155,10 @@ namespace Star_Security.Data
             );
 
             modelBuilder.Entity<Region>().HasData(
-                  new Region { Id = 1, Name = "North Region" },
-                  new Region { Id = 2, Name = "West Region" },
-                  new Region { Id = 3, Name = "East Region" },
-                  new Region { Id = 4, Name = "South Region" }
+                  new Region { Id = 1, Name = "North" },
+                  new Region { Id = 2, Name = "West" },
+                  new Region { Id = 3, Name = "East" },
+                  new Region { Id = 4, Name = "South" }
              );
 
             // Branches

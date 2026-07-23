@@ -7,9 +7,14 @@
     thead
 
 {
-    background: rgb(104, 38, 228);
+    /*    background: rgb(86, 0, 199);*/
+    background: rgba(152, 104, 241, 0.6);
 }
 
+}
+
+.main-wrapper .table-custom thead > tr > th {
+    padding: 15px 7px;
 }
 
 .btn-purple {
@@ -117,3 +122,31 @@
 .dt-paging .dt-paging-button.active button {
     background: linear-gradient(190deg, #a270fd, #2a05af);
 }
+
+.bg-badge-secondary {
+    background: rgba(255,255,255,0.2);
+    outline: 1px solid #555;
+    padding: 3px 8px;
+    border-radius: 6px;
+}
+
+.status-badge {
+    padding: 4px 10px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+.status-badge.success {
+    background: rgba(16, 185, 129, 0.1);
+    color: #10b981;
+}
+    .status-badge.danger {
+        background: rgba(239, 68, 68, 0.1);
+        color: #ef4444;
+    }
+    .status-badge.muted {
+        background: rgba(156, 163, 175, 0.12);
+        color: #9ca3af;
+    }

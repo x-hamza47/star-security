@@ -7,28 +7,23 @@
     <thead>
         <tr>
             <th class="text-center">ID</th>
-            <th class="text-center">Name</th>
+            <th>Name</th>
             <th class="text-center">Code</th>
             <th class="text-center">Status</th>
             <th class="text-center">Action</th>
-        </tr>
+        </tr> 
     </thead>
     <tbody>
         @foreach (var department in Model)
         {
             <tr>
-                <td>@department.Id</td>
-                <td>@department.Name</td>
+                <td class="text-center">@department.Id</td>
+                <td class="text-start">@department.Name</td>
                 <td>@department.Code</td>
                 <td>
-                    @if (department.IsActive)
-                    {
-                        <span class="badge text-bg-success w-50 py-2">Active</span>
-                    }
-                    else
-                    {
-                        <span class="badge text-bg-secondary w-50 py-2">Inactive</span>
-                    }
+                    <span class="status-badge @(department.IsActive ? "success" : "muted")">
+                        @(department.IsActive ? "Active" : "Inactive")
+                    </span>
                 </td>
                 <td>
                     <div class="d-flex align-items-center justify-content-center gap-2">

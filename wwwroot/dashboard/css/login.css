@@ -90,7 +90,6 @@ body::after {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   padding: 30px 40px;
-  margin: 3% 3%;
   z-index: 99999;
   h1 {
     font-size: 36px;

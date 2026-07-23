@@ -20,14 +20,9 @@
                 <td>@grade.Name</td>
                 <td>@grade.LevelCode</td>
                 <td>
-                    @if (grade.IsActive)
-                    {
-                        <span class="badge text-bg-success w-50 py-2">Active</span>
-                    }
-                    else
-                    {
-                        <span class="badge text-bg-secondary w-50 py-2">Inactive</span>
-                    }
+                    <span class="status-badge @(grade.IsActive ? "success" : "danger")">
+                        @(grade.IsActive ? "Active" : "Inactive")
+                    </span>
                 </td>
                 <td>
                     <div class="d-flex align-items-center justify-content-center gap-2">

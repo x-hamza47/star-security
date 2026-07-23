@@ -5,13 +5,15 @@
 <table id="employeesTable" class="table-custom hover cell-border table-striped text-center">
     <thead>
         <tr>
-            <th>Emp Code</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Department</th>
-            <th>Grade</th>
-            <th>Client</th>
-            <th>Action</th>
+            <th class="text-center">Emp Code</th>
+            <th class="text-center">Empployee</th>
+            <th class="text-center">Email Address</th>
+            <th class="text-center">Department</th>
+            <th class="text-center">Clients</th>
+            @if (User.IsInRole("Admin"))
+            {
+            <th class="text-center">Action</th>
+            }
         </tr>
     </thead>
     <tbody>
@@ -19,29 +21,41 @@
         {
             <tr>
                 <td>@employee.EmpCode</td>
-                <td>@employee.Name</td>
-                <td>@employee.Email</td>
-                <td>@employee.Department</td>
-                <td>@employee.Grade</td>
-                <td>@employee.Client</td>
-                <td>
-                    <div class="d-flex align-items-center justify-content-center gap-2">
-                        <button class="btn btn-purple btn-sm edit-emp-btn"
-                                data-id="@employee.Id"
-                                data-code="@employee.EmpCode"
-                                data-name="@employee.Name"
-                                data-email="@employee.Email"
-                                data-departmentid="@employee.DepartmentId"
-                                data-gradeid="@employee.GradeId">
-                            <span class="material-symbols-rounded">edit</span>
-                        </button>
-                        <a class="btn btn-red btn-sm text-white delete-emp-btn" data-id="@employee.Id">
-                            <span class="material-symbols-rounded">
-                                delete
-                            </span>
-                        </a>
+                <td style="padding-block:15px" class="text-start">
+                    <div class="d-flex align-items-center gap-2">
+                        <div style="width:44px;height:44px;background:#000316;padding:3px;" class="rounded-circle">
+                            <img src="@employee.ProfileImage" alt="User Profile" class="w-100 h-100 object-fit-cover rounded-circle" />
+                        </div>
+                        <span class="d-flex flex-column">
+                            <strong class="fw-medium">@employee.Name</strong>
+                            <small style="color:#8a8fa8;" class="fw-medium">@employee.Grade</small>
+                        </span>
                     </div>
                 </td>
+                <td><a href="mailto:@employee.Email" class="text-decoration-none">@employee.Email</a></td>
+                <td><span class="bg-badge-secondary" style="font-size:12px;">@employee.Department</span></td>
+                <td>@employee.Client</td>
+                @if (User.IsInRole("Admin"))
+                {
+                    <td>
+                        <div class="d-flex align-items-center justify-content-center gap-2">
+                            <button class="btn btn-purple btn-sm edit-emp-btn"
+                                    data-id="@employee.Id"
+                                    data-code="@employee.EmpCode"
+                                    data-name="@employee.Name"
+                                    data-email="@employee.Email"
+                                    data-departmentid="@employee.DepartmentId"
+                                    data-gradeid="@employee.GradeId">
+                                <span class="material-symbols-rounded">edit</span>
+                            </button>
+                            <a class="btn btn-red btn-sm text-white delete-emp-btn" data-id="@employee.Id">
+                                <span class="material-symbols-rounded">
+                                    delete
+                                </span>
+                            </a>
+                        </div>
+                    </td>
+                }
             </tr>
         }
     </tbody>
@@ -51,12 +65,45 @@
 @section Scripts {
     <script src="https://cdn.datatables.net/2.3.5/js/dataTables.js"></script>
     <script src="https://cdn.datatables.net/2.3.5/js/dataTables.bootstrap5.min.js"></script>
-    <script>
-        const departments = @Html.Raw(Json.Serialize(ViewBag.Departments));
-        const grades = @Html.Raw(Json.Serialize(ViewBag.Grades));
-    </script>
-    <script src="~/dashboard/js/employees.js"></script>
+
+    @if (User.IsInRole("Admin"))
+    {
+        <text>
+            <script>
+                const departments = @Html.Raw(Json.Serialize(ViewBag.Departments));
+                const grades = @Html.Raw(Json.Serialize(ViewBag.Grades));
+            </script>
+        </text>
+        <script src="~/dashboard/js/employees.js"></script>
+    }
+    else
+    {
+        <text>
+            <script>
+                  $(document).ready(function () {
+                    $("#employeesTable").DataTable({
+                        pagingType: "full_numbers",
+                        pageLength: 10,
+                        lengthMenu: [5, 10, 25],
+                        order: [[0, "asc"]],
+                        language: {
+                            search: '_INPUT_',
+                            searchPlaceholder: 'Search records...',
+                        },
+                        columnDefs: [
+                            {
+                                targets: -1,
+                                searchable: false,
+                                orderable: false
+                            }
+                        ],
+                    });
+                });
+            </script>
+        </text>
+    }
 }
+
 
 @section Styles {
     <link rel="stylesheet" href="~/dashboard/css/tables.css" />

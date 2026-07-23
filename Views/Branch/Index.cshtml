@@ -26,7 +26,7 @@
                 <td>@branch.ContactNumber</td>
                 <td>@branch.Region?.Name</td>
                 <td>
-                    <span class="badge @(branch.IsActive ? "text-bg-success" : "text-bg-secondary")">
+                    <span class="status-badge @(branch.IsActive ? "success" : "danger")">
                         @(branch.IsActive ? "Active" : "Inactive")
                     </span>
                 </td>

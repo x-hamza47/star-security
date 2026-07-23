@@ -2,13 +2,13 @@
 @section AlertsSection {
     @await Html.PartialAsync("_Alert")
 }
-<table id="subserviceTable" class="table-custom hover cell-border table-striped text-center">
+<table id="subserviceTable" class="table-custom hover cell-border table-striped">
     <thead>
         <tr>
             <th class="text-center">ID</th>
-            <th class="text-center">Name</th>
-            <th class="text-center">Department</th>
-            <th class="text-center">Description</th>
+            <th>Name</th>
+            <th>Department</th>
+            <th>Description</th>
             <th class="text-center">Action</th>
         </tr>
     </thead>
@@ -16,9 +16,11 @@
         @foreach (var sub in Model)
         {
             <tr>
-                <td>@sub.Id</td>
+                <td class="text-center">@sub.Id</td>
                 <td>@sub.Name</td>
-                <td>@sub.Department.Name</td>
+                <td>
+                    <span class="bg-badge-secondary" style="font-size:12px;">@sub.Department.Name</span>
+                </td>
                 <td>@sub.Description</td>
                 <td>
                     <div class="d-flex gap-2 justify-content-center">
